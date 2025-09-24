@@ -1,0 +1,175 @@
+.header {
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.header-container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  justify-content: space-between;
+}
+
+/* Khu vực 1: Logo (Trái) */
+.header-logo {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  min-width: 150px;
+}
+
+/* Khu vực 2: Search (Giữa) */
+.header-search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Khu vực 3: Actions (Phải) */
+.header-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 200px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .header-container {
+    padding: 0 30px;
+    gap: 30px;
+    grid-template-columns: auto 1fr auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header-container {
+    padding: 0 20px;
+    gap: 25px;
+    grid-template-columns: auto 1fr auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    position: relative;
+  }
+
+  .header-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .header-logo {
+    order: 1;
+    flex: 0 0 auto;
+    justify-content: flex-start;
+  }
+
+  .header-actions {
+    order: 2;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+  }
+
+  .header-search {
+    order: 3;
+    width: 100%;
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    position: relative;
+  }
+
+  .header-container {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .header-logo {
+    order: 1;
+  }
+
+  .header-actions {
+    order: 2;
+  }
+
+  .header-search {
+    order: 3;
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .header-logo .logo-text {
+    font-size: 20px;
+  }
+}
+
+/* Visual separation for debugging (optional) 
+.header-container.debug {
+  background: linear-gradient(90deg, 
+    rgba(255,0,0,0.1) 0%, 
+    rgba(255,0,0,0.1) 33.33%, 
+    rgba(0,255,0,0.1) 33.33%, 
+    rgba(0,255,0,0.1) 66.66%, 
+    rgba(0,0,255,0.1) 66.66%, 
+    rgba(0,0,255,0.1) 100%
+  );
+}
+*/
+
+/* Ensure proper alignment */
+.header-logo > * {
+  width: auto;
+  flex-shrink: 0;
+}
+
+.header-search > * {
+  width: 100%;
+  max-width: 800px; /* Tăng chiều rộng tối đa cho search bar để sử dụng hết không gian */
+  margin: 0 auto;
+}
+
+.header-actions > * {
+  width: auto;
+  flex-shrink: 0;
+}
+
+/* Animation for sticky header */
+.header.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.header-container > * {
+  transition: all 0.3s ease;
+}

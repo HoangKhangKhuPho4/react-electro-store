@@ -1,0 +1,53 @@
+/* ===== MAIN LAYOUT STYLES ===== */
+
+.main-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+/* ===== MAIN CONTENT AREA ===== */
+.main-content {
+  flex: 1; /* Đảm bảo content luôn đẩy footer xuống dưới */
+  width: 100%;
+  min-height: calc(100vh - 200px); /* Trừ đi chiều cao header + footer */
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+  .main-content {
+    min-height: calc(100vh - 150px);
+  }
+}
+
+/* ===== LOADING STATE (Optional) ===== */
+.main-layout.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* ===== LAYOUT DEBUGGING (Development only) ===== */
+/* Uncomment để debug layout structure */
+/*
+.main-layout > * {
+  border: 2px solid red;
+  margin: 2px;
+}
+
+.main-layout > header {
+  border-color: blue !important;
+}
+
+.main-layout > nav {
+  border-color: green !important;
+}
+
+.main-layout > main {
+  border-color: purple !important;
+}
+
+.main-layout > footer {
+  border-color: orange !important;
+}
+*/

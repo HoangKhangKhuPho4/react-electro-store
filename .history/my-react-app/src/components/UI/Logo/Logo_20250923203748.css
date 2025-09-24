@@ -1,0 +1,36 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ff6b35;
+  font-family: "Arial", sans-serif;
+}
+
+.logo-link:hover .logo-text {
+  color: #e55a2b;
+}
+
+@media (max-width: 768px) {
+  .logo-text {
+    font-size: 24px;
+  }
+}
