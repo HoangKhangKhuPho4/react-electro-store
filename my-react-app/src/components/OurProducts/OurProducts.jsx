@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../redux/appSlice";
 
 const IMAGES = [
@@ -45,6 +46,7 @@ const buildProducts = (count, offset = 0) =>
 
 const OurProducts = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [tab, setTab] = useState(0);
 
   const datasets = useMemo(
@@ -170,6 +172,9 @@ const OurProducts = () => {
                   },
                 },
               }}
+              onClick={() =>
+                navigate(`/product/${p.id}`, { state: { product: p } })
+              }
             >
               <Box
                 sx={{
@@ -308,11 +313,18 @@ const OurProducts = () => {
                       transform: "translateY(0px)",
                     },
                   }}
-                  onClick={() =>
+                  onClick={(e) => {
+                    e.stopPropagation();
                     dispatch(
-                      addToCart({ id: p.id, name: p.name, price: p.price })
-                    )
-                  }
+                      addToCart({
+                        id: p.id,
+                        name: p.name,
+                        price: p.price,
+                        image: p.image,
+                        description: "A brief description of the Product",
+                      })
+                    );
+                  }}
                 >
                   Add To Cart
                 </Button>

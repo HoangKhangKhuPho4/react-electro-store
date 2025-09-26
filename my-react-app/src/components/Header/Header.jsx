@@ -17,13 +17,21 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { selectCartItemCount, selectCartTotal } from "../../redux/appSlice";
 import Logo from "../UI/Logo";
 import "./Header.css";
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Category");
-  const cartItemCount = 0;
+  // const cartItemCount = 0;
+
+  //dùng useSelector() để lấy dữ liệu từ store
+  const cartItemCount = useSelector(selectCartItemCount);
+  //lấy luôn tổng tiền
+  const cartTotal = useSelector(selectCartTotal);
 
   const categories = [
     "All Category",
@@ -215,11 +223,17 @@ const Header = () => {
 
           {/* Cart Icon with Price */}
           <Box sx={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <IconButton sx={{ color: "#666" }} title="Shopping Cart">
-              <Badge badgeContent={cartItemCount} color="error">
-                <CartIcon />
-              </Badge>
-            </IconButton>
+            <Link
+              to="/cart"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <IconButton sx={{ color: "#666" }} title="Shopping Cart">
+                <Badge badgeContent={cartItemCount} color="error">
+                  <CartIcon />
+                </Badge>
+              </IconButton>
+            </Link>
+
             <Typography
               variant="h6"
               sx={{
@@ -228,7 +242,7 @@ const Header = () => {
                 fontSize: "16px",
               }}
             >
-              $0.00
+              ${cartTotal.toFixed(2)}
             </Typography>
           </Box>
         </Box>

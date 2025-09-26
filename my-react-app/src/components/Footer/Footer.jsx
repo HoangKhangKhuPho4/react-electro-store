@@ -1,8 +1,8 @@
-import { Box, Button, Grid, IconButton, InputBase, Paper, Typography } from "@mui/material";
-import PlaceIcon from "@mui/icons-material/Place";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PhoneIcon from "@mui/icons-material/Phone";
+import PlaceIcon from "@mui/icons-material/Place";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
+import { Box, Grid, Typography } from "@mui/material";
 import "./Footer.css";
 
 const QuickItem = ({ icon, title, subtitle }) => (
@@ -28,48 +28,89 @@ const Footer = () => {
       <Box className="footer-quick">
         <Grid container spacing={2} className="footer-container">
           <Grid item xs={12} md={3}>
-            <QuickItem icon={<PlaceIcon />} title="Address" subtitle="123 Street New York,USA" />
+            <QuickItem
+              icon={<PlaceIcon />}
+              title="Address"
+              subtitle="123 Street New York,USA"
+            />
           </Grid>
           <Grid item xs={12} md={3}>
-            <QuickItem icon={<MailOutlineIcon />} title="Mail Us" subtitle="info@example.com" />
+            <QuickItem
+              icon={<MailOutlineIcon />}
+              title="Mail Us"
+              subtitle="info@example.com"
+            />
           </Grid>
           <Grid item xs={12} md={3}>
-            <QuickItem icon={<PhoneIcon />} title="Telephone" subtitle="(+012) 3456 7890" />
+            <QuickItem
+              icon={<PhoneIcon />}
+              title="Telephone"
+              subtitle="(+012) 3456 7890"
+            />
           </Grid>
           <Grid item xs={12} md={3}>
-            <QuickItem icon={<WhatshotIcon />} title="Yoursite@ex.com" subtitle="(+012) 3456 7890" />
+            <QuickItem
+              icon={<WhatshotIcon />}
+              title="Yoursite@ex.com"
+              subtitle="(+012) 3456 7890"
+            />
           </Grid>
         </Grid>
       </Box>
 
       {/* Main footer columns */}
       <Box className="footer-main">
-        <Grid container spacing={3} className="footer-container" alignItems="stretch">
+        <Grid
+          container
+          spacing={3}
+          className="footer-container"
+          alignItems="stretch"
+        >
           <Grid item xs={12} md={3}>
             <Box className="footer-col">
               <Typography className="footer-col-title">Newsletter</Typography>
               <Typography className="footer-text">
-              Dolor amet sit justo amet elitr clita ipsum elitr est.Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit consectetur adipiscing elit.
+                Đăng ký nhận bản tin để cập nhật thông tin mới nhất, ưu đãi và
+                tin tức từ chúng tôi.
               </Typography>
-              <Paper component="form" className="newsletter" elevation={0}>
-                <InputBase className="newsletter-input" placeholder="Enter your email" />
-                <Button variant="contained" color="warning" className="newsletter-btn">SignUp</Button>
-              </Paper>
+              <Box
+                component="form"
+                className="newsletter"
+                sx={{ mb: 2 }}
+                autoComplete="off"
+              >
+                <input
+                  className="newsletter-input"
+                  placeholder="Enter your email"
+                  type="email"
+                  required
+                />
+                <button className="newsletter-btn" type="submit">
+                  Sign Up
+                </button>
+              </Box>
+              <Box className="footer-links">
+                <LinkItem label="Our Blog" />
+                <LinkItem label="Press Releases" />
+                <LinkItem label="Join Our Team" />
+                <LinkItem label="Latest News" />
+              </Box>
             </Box>
           </Grid>
 
           <Grid item xs={12} md={3}>
             <Box className="footer-col">
-              <Typography className="footer-col-title">Customer Service</Typography>
+              <Typography className="footer-col-title">
+                Customer Service
+              </Typography>
               <Box className="footer-links">
-              <LinkItem label="Contact Us" />
-              <LinkItem label="Returns" />
-              <LinkItem label="Order History" />
-              <LinkItem label="Site Map" />
-              <LinkItem label="Testimonials" />
-              <LinkItem label="My Account" />
-              <LinkItem label="Unsubscribe Notification" />
+                <LinkItem label="Contact Us" />
+                <LinkItem label="Returns" />
+                <LinkItem label="Order History" />
+                <LinkItem label="Site Map" />
+                <LinkItem label="Testimonials" />
+                <LinkItem label="My Account" />
+                <LinkItem label="Unsubscribe Notification" />
               </Box>
             </Box>
           </Grid>
@@ -78,13 +119,13 @@ const Footer = () => {
             <Box className="footer-col">
               <Typography className="footer-col-title">Information</Typography>
               <Box className="footer-links">
-              <LinkItem label="About Us" />
-              <LinkItem label="Delivery information" />
-              <LinkItem label="Privacy Policy" />
-              <LinkItem label="Terms & Conditions" />
-              <LinkItem label="Warranty" />
-              <LinkItem label="FAQ" />
-              <LinkItem label="Seller Login" />
+                <LinkItem label="About Us" />
+                <LinkItem label="Delivery information" />
+                <LinkItem label="Privacy Policy" />
+                <LinkItem label="Terms & Conditions" />
+                <LinkItem label="Warranty" />
+                <LinkItem label="FAQ" />
+                <LinkItem label="Seller Login" />
               </Box>
             </Box>
           </Grid>
@@ -93,13 +134,13 @@ const Footer = () => {
             <Box className="footer-col">
               <Typography className="footer-col-title">Extras</Typography>
               <Box className="footer-links">
-              <LinkItem label="Brands" />
-              <LinkItem label="Gift Vouchers" />
-              <LinkItem label="Affiliates" />
-              <LinkItem label="Wishlist" />
-              <LinkItem label="Order History" />
-              <LinkItem label="Track Your Order" />
-              <LinkItem label="Track Your Order" />
+                <LinkItem label="Brands" />
+                <LinkItem label="Gift Vouchers" />
+                <LinkItem label="Affiliates" />
+                <LinkItem label="Wishlist" />
+                <LinkItem label="Order History" />
+                <LinkItem label="Track Your Order" />
+                <LinkItem label="Track Your Order" />
               </Box>
             </Box>
           </Grid>
@@ -110,5 +151,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-
