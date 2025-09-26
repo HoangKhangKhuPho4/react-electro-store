@@ -12,7 +12,6 @@ import {
 import { useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
-import { addToCart } from "../../redux/appSlice";
 
 const DUMMY = {
   title: "Men's Shoes Fashion",
@@ -201,7 +200,6 @@ export default function ProductDetail() {
                     name: product.title,
                     price: product.price,
                     description: product.description,
-                    image: product.images[0],
                   })
                 )
               }

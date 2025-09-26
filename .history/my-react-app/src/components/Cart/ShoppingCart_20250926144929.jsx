@@ -150,7 +150,7 @@ function ShoppingCart() {
             <IconButton
               aria-label="delete"
               color="error"
-              onClick={() => handleRemoveItem(item.id)}
+              onClick={handleRemoveItem}
             >
               <DeleteIcon />
             </IconButton>

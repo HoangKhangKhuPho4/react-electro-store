@@ -7,34 +7,14 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  removeFromCart,
-  selectCart,
-  updateCartQuantity,
-} from "../../redux/appSlice";
+import { useSelector } from "react-redux";
+import { selectCart } from "../../redux/appSlice";
 
 //Bước 2 : Dùng useSelector để lấy dữ liệu từ Store
 // const cartItem = useSelector((state) => state.app.cart);
 
 function ShoppingCart() {
   const cartItems = useSelector(selectCart);
-  const dispatch = useDispatch();
-
-  const handleRemoveItem = (itemId) => {
-    dispatch(removeFromCart(itemId));
-  };
-
-  //Bước 2 : Tạo hàm xử Lý thay đổi số lượng
-  const handleQuantityChange = (itemId, newQuantityStr) => {
-    const newQuantity = parseInt(newQuantityStr, 10);
-
-    //chỉ dispatch khi giá trị của nó là một số hợp lệ
-    // Reducer Xử Lý logic xóa nếu số lượng <= 0
-    if (!isNaN(newQuantity)) {
-      dispatch(updateCartQuantity({ id: itemId, quantity: newQuantity }));
-    }
-  };
 
   // Tính toán tổng tiền
   const subtotal = cartItems.reduce(
@@ -129,8 +109,7 @@ function ShoppingCart() {
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <TextField
                 type="number"
-                value={item.quantity}
-                onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                defaultValue={item.quantity}
                 inputProps={{ min: 1, style: { textAlign: "center" } }}
                 sx={{ width: "70px" }}
                 size="small"
@@ -147,11 +126,7 @@ function ShoppingCart() {
 
           {/* Cột 5: Nút Xóa */}
           <Grid item xs={1} md={1}>
-            <IconButton
-              aria-label="delete"
-              color="error"
-              onClick={() => handleRemoveItem(item.id)}
-            >
+            <IconButton aria-label="delete" color="error">
               <DeleteIcon />
             </IconButton>
           </Grid>

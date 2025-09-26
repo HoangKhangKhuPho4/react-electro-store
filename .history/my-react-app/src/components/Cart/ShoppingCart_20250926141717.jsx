@@ -147,11 +147,7 @@ function ShoppingCart() {
 
           {/* Cột 5: Nút Xóa */}
           <Grid item xs={1} md={1}>
-            <IconButton
-              aria-label="delete"
-              color="error"
-              onClick={() => handleRemoveItem(item.id)}
-            >
+            <IconButton aria-label="delete" color="error">
               <DeleteIcon />
             </IconButton>
           </Grid>

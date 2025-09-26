@@ -14,7 +14,7 @@ import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
 
 // Pages
-import ShoppingCart from "./components/Cart/ShoppingCart.jsx";
+import ShoppingCart from "./Cart/ShoppingCart";
 import ProductDetail from "./components/Product-Details";
 import About from "./pages/About";
 import Contact from "./pages/Contact";

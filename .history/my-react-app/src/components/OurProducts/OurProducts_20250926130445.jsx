@@ -317,7 +317,7 @@ const OurProducts = () => {
                     e.stopPropagation();
                     dispatch(
                       addToCart({
-                        id: p.id.toString(),
+                        id: p.id,
                         name: p.name,
                         price: p.price,
                         image: p.image,

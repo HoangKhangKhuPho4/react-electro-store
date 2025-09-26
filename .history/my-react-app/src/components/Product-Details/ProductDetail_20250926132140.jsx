@@ -201,7 +201,6 @@ export default function ProductDetail() {
                     name: product.title,
                     price: product.price,
                     description: product.description,
-                    image: product.images[0],
                   })
                 )
               }
