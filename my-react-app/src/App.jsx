@@ -17,11 +17,12 @@ import Navigation from "./components/Navigation/Navigation";
 import ShoppingCart from "./components/Cart/ShoppingCart.jsx";
 import ProductDetail from "./components/Product-Details";
 import About from "./pages/About";
+import Login from "./pages/auth/Login.jsx";
+import Register from "./pages/auth/register.jsx";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import { store } from "./redux/store";
-
 // RTK Query Demo
 import { Provider } from "react-redux";
 import AppSliceDemo from "./components/AppSliceDemo";
@@ -45,6 +46,9 @@ function App() {
               <Route path="/shop" element={<Shop />} />
 
               <Route path="/product/:id" element={<ProductDetail />} />
+
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
               <Route path="/cart" element={<ShoppingCart />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/about" element={<About />} />

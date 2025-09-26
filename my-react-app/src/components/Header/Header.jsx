@@ -4,10 +4,12 @@ import {
   Search as SearchIcon,
   Shuffle as ShuffleIcon,
 } from "@mui/icons-material";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import {
   AppBar,
   Badge,
-  Box,
+  Box /*...,*/,
+  Button,
   FormControl,
   IconButton,
   MenuItem,
@@ -26,7 +28,7 @@ import "./Header.css";
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Category");
-  // const cartItemCount = 0;
+  // const cartItemCount =     0;
 
   //dùng useSelector() để lấy dữ liệu từ store
   const cartItemCount = useSelector(selectCartItemCount);
@@ -245,6 +247,24 @@ const Header = () => {
               ${cartTotal.toFixed(2)}
             </Typography>
           </Box>
+
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            <Button
+              variant="contained"
+              startIcon={<PersonOutlineIcon />}
+              sx={{
+                backgroundColor: "#D32F2F", // Màu đỏ
+                borderRadius: "20px",
+                textTransform: "none",
+                fontWeight: "bold",
+                "&:hover": {
+                  backgroundColor: "#B71C1C",
+                },
+              }}
+            >
+              Đăng nhập
+            </Button>
+          </Link>
         </Box>
       </Toolbar>
     </AppBar>
