@@ -21,11 +21,7 @@ import {
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  selectCartItemCount,
-  selectCartTotal,
-  selectWishlistCount,
-} from "../../redux/appSlice";
+import { selectCartItemCount, selectCartTotal, selectWishlist } from "../../redux/appSlice";
 import Logo from "../UI/Logo";
 import "./Header.css";
 
@@ -38,8 +34,7 @@ const Header = () => {
   const cartItemCount = useSelector(selectCartItemCount);
   //lấy luôn tổng tiền
   const cartTotal = useSelector(selectCartTotal);
-  // Lấy số lượng sản phẩm yêu thích
-  const wishlistCount = useSelector(selectWishlistCount);
+  const wishlist = useSelector(selectWishlist); // <-- Lấy danh sách wishlist
 
   const categories = [
     "All Category",
@@ -230,7 +225,24 @@ const Header = () => {
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <IconButton sx={{ color: "#666" }} title="Wishlist">
-              <Badge badgeContent={wishlistCount} color="error">
+              <Badge
+                badgeContent={wishlist.length}
+                color="error"
+                overlap="circular"
+                sx={{
+                  "& .MuiBadge-badge": {
+                    right: -8,
+                    top: 8,
+                    fontSize: "0.8rem",
+                    minWidth: 20,
+                    height: 20,
+                    borderRadius: "50%",
+                    background: "#ff9800",
+                    color: "#fff",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+                  },
+                }}
+              >
                 <FavoriteIcon />
               </Badge>
             </IconButton>

@@ -22,7 +22,6 @@ import Register from "./pages/auth/register.jsx";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
-import Wishlist from "./pages/Wishlist/Wishlist";
 import { store } from "./redux/store";
 // RTK Query Demo
 import { Provider } from "react-redux";

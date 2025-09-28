@@ -21,11 +21,7 @@ import {
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  selectCartItemCount,
-  selectCartTotal,
-  selectWishlistCount,
-} from "../../redux/appSlice";
+import { selectCartItemCount, selectCartTotal, selectWishlistCount } from "../../redux/appSlice";
 import Logo from "../UI/Logo";
 import "./Header.css";
 

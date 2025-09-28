@@ -112,6 +112,5 @@ export const selectCartTotal = (state) =>
   state.app.cart.reduce((total, item) => total + item.price * item.quantity, 0);
 export const selectCartItemCount = (state) =>
   state.app.cart.reduce((count, item) => count + item.quantity, 0);
-export const selectWishlist = (state) => state.app.wishlist;
-export const selectWishlistCount = (state) => state.app.wishlist.length;
+
 export default appSlice.reducer;

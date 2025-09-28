@@ -1,18 +1,18 @@
 // src/components/ProductCard.jsx
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import {
-  Alert,
   Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
-  Snackbar,
   Typography,
+  Snackbar,
+  Alert,
 } from "@mui/material";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToCart, addToWishlist } from "../../redux/appSlice";
+import { addToWishlist, addToCart } from "../../redux/appSlice";
+import { useState } from "react";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();

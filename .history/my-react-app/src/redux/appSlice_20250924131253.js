@@ -5,7 +5,6 @@ const initialState = {
   user: null,
   theme: "light",
   cart: [],
-  wishlist: [],
   isLoggedIn: false,
 };
 
@@ -29,11 +28,6 @@ export const appSlice = createSlice({
     // Action để thay đổi theme
     toggleTheme: (state) => {
       state.theme = state.theme === "light" ? "dark" : "light";
-    },
-
-    loginSuccess: (state, action) => {
-      state.isLoggedIn = true;
-      state.user = action.payload;
     },
 
     // Actions để quản lý cart
@@ -71,21 +65,6 @@ export const appSlice = createSlice({
     clearCart: (state) => {
       state.cart = [];
     },
-    addToWishlist: (state, action) => {
-      const productToAdd = action.payload;
-      const existingItem = state.wishlist.find(
-        (item) => item.id === productToAdd.id
-      );
-
-      if (!existingItem) {
-        state.wishlist.push(productToAdd);
-      }
-    },
-
-    removeFromWishlist: (state, action) => {
-      const idToRemove = action.payload;
-      state.wishlist = state.wishlist.filter((item) => item.id !== idToRemove);
-    },
   },
 });
 
@@ -98,9 +77,6 @@ export const {
   removeFromCart,
   updateCartQuantity,
   clearCart,
-  addToWishlist,
-  removeFromWishlist,
-  loginSuccess,
 } = appSlice.actions;
 
 // Selector functions
@@ -112,6 +88,5 @@ export const selectCartTotal = (state) =>
   state.app.cart.reduce((total, item) => total + item.price * item.quantity, 0);
 export const selectCartItemCount = (state) =>
   state.app.cart.reduce((count, item) => count + item.quantity, 0);
-export const selectWishlist = (state) => state.app.wishlist;
-export const selectWishlistCount = (state) => state.app.wishlist.length;
+
 export default appSlice.reducer;
