@@ -1,56 +1,92 @@
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PhoneIcon from "@mui/icons-material/Phone";
 import PlaceIcon from "@mui/icons-material/Place";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
-import { Box, Grid, Typography } from "@mui/material";
-import "./Footer.css";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 
+// Component con cho các mục thông tin nhanh ở trên cùng
 const QuickItem = ({ icon, title, subtitle }) => (
-  <Box className="footer-quick-item">
-    <Box className="footer-quick-icon">{icon}</Box>
+  <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+    <Box
+      sx={{
+        width: 44,
+        height: 44,
+        borderRadius: "50%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        bgcolor: "#ff3f3f",
+        color: "#fff",
+      }}
+    >
+      {icon}
+    </Box>
     <Box>
-      <Typography className="footer-quick-title">{title}</Typography>
-      <Typography className="footer-quick-sub">{subtitle}</Typography>
+      <Typography sx={{ fontWeight: 700, color: "#fff" }}>{title}</Typography>
+      <Typography sx={{ color: "#bdbdbd", fontSize: 14 }}>
+        {subtitle}
+      </Typography>
     </Box>
   </Box>
 );
 
+// Component con cho mỗi link ở các cột
 const LinkItem = ({ label }) => (
-  <Box component="a" href="#" className="footer-link">
+  <Typography
+    component="a"
+    href="#"
+    sx={{
+      color: "#e9e9e9",
+      textDecoration: "none",
+      fontSize: 14,
+      position: "relative",
+      pl: "14px",
+      "&:hover": { color: "#ffffff" },
+      "&::before": {
+        content: '"›"',
+        position: "absolute",
+        left: 0,
+        color: "#ff8a00",
+      },
+    }}
+  >
     {label}
-  </Box>
+  </Typography>
 );
 
 const Footer = () => {
   return (
-    <Box component="footer" className="footer">
+    <Box component="footer">
       {/* Top quick info bar */}
-      <Box className="footer-quick">
-        <Grid container spacing={2} className="footer-container">
-          <Grid item xs={12} md={3}>
+      <Box sx={{ bgcolor: "#3a3d40", py: 3 }}>
+        <Grid
+          container
+          spacing={2}
+          sx={{ maxWidth: 1200, mx: "auto", px: 2, mr: 4 }}
+        >
+          <Grid item xs={12} sm={6} md={3}>
             <QuickItem
               icon={<PlaceIcon />}
               title="Address"
               subtitle="123 Street New York,USA"
             />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <QuickItem
               icon={<MailOutlineIcon />}
               title="Mail Us"
               subtitle="info@example.com"
             />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <QuickItem
               icon={<PhoneIcon />}
               title="Telephone"
               subtitle="(+012) 3456 7890"
             />
           </Grid>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <QuickItem
-              icon={<WhatshotIcon />}
+              icon={<PhoneIcon />}
               title="Yoursite@ex.com"
               subtitle="(+012) 3456 7890"
             />
@@ -59,95 +95,132 @@ const Footer = () => {
       </Box>
 
       {/* Main footer columns */}
-      <Box className="footer-main">
+      <Box sx={{ bgcolor: "#2f3234", py: 5 }}>
         <Grid
           container
-          spacing={3}
-          className="footer-container"
-          alignItems="stretch"
+          spacing={2}
+          sx={{ maxWidth: 1200, mx: "auto", px: 2, mr: 4 }}
         >
+          {/* Newsletter Column */}
           <Grid item xs={12} md={3}>
-            <Box className="footer-col">
-              <Typography className="footer-col-title">Newsletter</Typography>
-              <Typography className="footer-text">
-                Đăng ký nhận bản tin để cập nhật thông tin mới nhất, ưu đãi và
-                tin tức từ chúng tôi.
-              </Typography>
-              <Box
-                component="form"
-                className="newsletter"
-                sx={{ mb: 2 }}
-                autoComplete="off"
+            <Typography
+              sx={{ fontWeight: 800, mb: 1.5, color: "#ff8a00", fontSize: 18 }}
+            >
+              Newsletter
+            </Typography>
+            <Typography
+              sx={{
+                color: "#bdbdbd",
+                mb: 2,
+                fontSize: 14,
+                maxWidth: "280px", // <-- Thêm dòng này
+              }}
+            >
+              Dolor sit amet justo amet elitr clita ipsum elitr est.Lorem ipsum
+              dolor sit amet, consetetur adipiscing elit.
+            </Typography>
+            <Box
+              component="form"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                background: "#fff",
+                borderRadius: "999px",
+                p: "4px",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+                maxWidth: "280px",
+              }}
+            >
+              <TextField
+                variant="standard"
+                placeholder="Enter your email"
+                sx={{
+                  flex: 1,
+                  "& .MuiInput-underline:before": { borderBottom: "none" },
+                  "& .MuiInput-underline:after": { borderBottom: "none" },
+                  "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
+                    borderBottom: "none",
+                  },
+                  "& .MuiInputBase-input": { p: "8px 16px" },
+                }}
+              />
+              <Button
+                sx={{
+                  bgcolor: "#ff9800",
+                  color: "#fff",
+                  fontWeight: "bold",
+                  borderRadius: "999px",
+                  px: 2.5,
+                  py: 1.25,
+                  textTransform: "none",
+                  "&:hover": { bgcolor: "#f57c00" },
+                }}
               >
-                <input
-                  className="newsletter-input"
-                  placeholder="Enter your email"
-                  type="email"
-                  required
-                />
-                <button className="newsletter-btn" type="submit">
-                  Sign Up
-                </button>
-              </Box>
-              <Box className="footer-links">
-                <LinkItem label="Our Blog" />
-                <LinkItem label="Press Releases" />
-                <LinkItem label="Join Our Team" />
-                <LinkItem label="Latest News" />
-              </Box>
+                SignUp
+              </Button>
             </Box>
           </Grid>
 
+          {/* Other Link Columns */}
           <Grid item xs={12} md={3}>
-            <Box className="footer-col">
-              <Typography className="footer-col-title">
-                Customer Service
-              </Typography>
-              <Box className="footer-links">
-                <LinkItem label="Contact Us" />
-                <LinkItem label="Returns" />
-                <LinkItem label="Order History" />
-                <LinkItem label="Site Map" />
-                <LinkItem label="Testimonials" />
-                <LinkItem label="My Account" />
-                <LinkItem label="Unsubscribe Notification" />
-              </Box>
-            </Box>
+            <LinkColumn
+              title="Customer Service"
+              links={[
+                "Contact Us",
+                "Returns",
+                "Order History",
+                "Site Map",
+                "Testimonials",
+                "My Account",
+              ]}
+            />
           </Grid>
-
           <Grid item xs={12} md={3}>
-            <Box className="footer-col">
-              <Typography className="footer-col-title">Information</Typography>
-              <Box className="footer-links">
-                <LinkItem label="About Us" />
-                <LinkItem label="Delivery information" />
-                <LinkItem label="Privacy Policy" />
-                <LinkItem label="Terms & Conditions" />
-                <LinkItem label="Warranty" />
-                <LinkItem label="FAQ" />
-                <LinkItem label="Seller Login" />
-              </Box>
-            </Box>
+            <LinkColumn
+              title="Information"
+              links={[
+                "About Us",
+                "Delivery information",
+                "Privacy Policy",
+                "Terms & Conditions",
+                "Warranty",
+                "FAQ",
+              ]}
+            />
           </Grid>
-
           <Grid item xs={12} md={3}>
-            <Box className="footer-col">
-              <Typography className="footer-col-title">Extras</Typography>
-              <Box className="footer-links">
-                <LinkItem label="Brands" />
-                <LinkItem label="Gift Vouchers" />
-                <LinkItem label="Affiliates" />
-                <LinkItem label="Wishlist" />
-                <LinkItem label="Order History" />
-                <LinkItem label="Track Your Order" />
-                <LinkItem label="Track Your Order" />
-              </Box>
-            </Box>
+            <LinkColumn
+              title="Extras"
+              links={[
+                "Brands",
+                "Gift Vouchers",
+                "Affiliates",
+                "Wishlist",
+                "Order History",
+                "Track Your Order",
+              ]}
+            />
           </Grid>
         </Grid>
       </Box>
     </Box>
   );
 };
+
+// Component con để tái sử dụng cho các cột link
+const LinkColumn = ({ title, links }) => (
+  <Box>
+    <Typography
+      sx={{ fontWeight: 800, mb: 1.5, color: "#ff8a00", fontSize: 18 }}
+    >
+      {title}
+    </Typography>
+    <Box sx={{ display: "grid", gap: 1 }}>
+      {links.map((link) => (
+        <LinkItem key={link} label={link} />
+      ))}
+    </Box>
+  </Box>
+);
 
 export default Footer;

@@ -16,14 +16,14 @@ import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../redux/appSlice";
 
 const IMAGES = [
-  "https://images.unsplash.com/photo-1510557880182-3d4d3cba35c1?q=80&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1518445075-00a2d54c4cfa?q=80&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1517059224940-d4af9eec41e5?q=80&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1470259078422-826894b933aa?q=80&w=1600&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1600&auto=format&fit=crop",
+  "https://cellphones.com.vn/sforum/wp-content/uploads/2021/09/ipad-mini-6-16-scaled.jpg",
+  "https://www.macwelt.de/wp-content/uploads/2023/04/4313305_original.jpg?quality=50&strip=all&w=1024",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk_EBTFwidHpA2rv7JHPINsGHaWWSnAOk6OlQSLsv0oSQ3kRUaCBwysl5PiUZwOD9Cft8&usqp=CAU",
+  "https://cellphones.com.vn/sforum/wp-content/uploads/2021/09/ipad-mini-6-4-scaled.jpg",
+  "https://zshop.vn/images/companies/1/san_pham/Apple/iPad%20mini%202021/ipadmini%202.jpg?1631878943755",
+  "https://cdn2.fptshop.com.vn/unsafe/564x0/filters:quality(80)/Uploads/images/2015/Tin-Tuc/QuanLNH2/ipad-mini-83-2021-9.jpg",
+  "https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-mini-6_2__1.jpg",
+  "https://cdn2.fptshop.com.vn/unsafe/564x0/filters:quality(80)/Uploads/images/2015/Tin-Tuc/QuanLNH2/ipad-mini-83-2021-6.jpg",
   "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1600&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1600&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1512499617640-c2f999098c79?q=80&w=1600&auto=format&fit=crop",

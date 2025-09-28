@@ -7,12 +7,20 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
-import { useDispatch } from "react-redux"; // Bước 1
-import { Link, useNavigate } from "react-router-dom"; // <-- THÊM 'Link' vào đâyimport loginSuccess from "../../redux/appSlice";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "../../hooks/useForm";
+import loginSuccess from "../../redux/appSlice";
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
+  //Thay Thế 2 useState bằng useForm
+  const { values, handleChange } = useForm({
+    email: "",
+    password: "",
+  });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,7 +28,7 @@ const Login = () => {
     e.preventDefault();
 
     //Bước 1: validate
-    if (email === "" || password === null) {
+    if (values.email === "" || values.password === "") {
       alert("Vui Lòng Nhập Đầy đủ Thông Tin");
       return;
     }
@@ -29,15 +37,17 @@ const Login = () => {
     const correctEmail = "hoangkhang@gmail.com";
     const correctPassword = "123456";
 
-    if (email === correctEmail && password === correctPassword) {
+    if (values.email === correctEmail && values.password === correctPassword) {
       //Thay Thế console.log(" ") bằng dispatch và redirect về home-page
       console.log("Login Success");
       dispatch(
         loginSuccess({
           name: "Test User",
-          email: email,
+          email: values.email,
         })
       );
+      // Thêm chuyển hướng về trang chủ nếu muốn
+      // navigate("/");
     } else {
       alert("Sai Email Hoặc Mật Khẩu");
     }
@@ -45,8 +55,8 @@ const Login = () => {
     //logic xử lý(connect Backend)
     //giả lập Backend
     console.log("Attempting to login with: ");
-    console.log("Email: ", email);
-    console.log("Password", password);
+    console.log("Email: ", values.email);
+    console.log("Password", values.password);
   };
 
   return (
@@ -76,6 +86,7 @@ const Login = () => {
 
         <TextField
           label="Username"
+          name="email"
           variant="filled"
           fullWidth
           sx={{
@@ -94,11 +105,12 @@ const Login = () => {
               color: "black",
             },
           }}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={values.email}
+          onChange={handleChange}
         />
         <TextField
           label="Password"
+          name="password"
           type="password"
           variant="filled"
           fullWidth
@@ -118,8 +130,8 @@ const Login = () => {
               color: "black",
             },
           }}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={values.password}
+          onChange={handleChange}
         />
 
         <FormControlLabel

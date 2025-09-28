@@ -9,7 +9,7 @@ const slides = [
     desc: "Terms and Condition Apply",
     cta: "Shop Now",
     image:
-      "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop",
+      "https://cdn.tgdd.vn/Files/2016/10/27/905695/imac-macbook_800x450.jpg",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const slides = [
     desc: "Free shipping on select items",
     cta: "Discover",
     image:
-      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1600&auto=format&fit=crop",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ9J9GX59RgyzPYklat_GL_mdT8YRxlS2lNg&s",
   },
 ];
 
@@ -45,7 +45,10 @@ const Banner = () => {
         {/* LEFT: Carousel */}
         <div className="banner-carousel">
           {slides.map((s, i) => (
-            <div key={s.id} className={`banner-slide ${i === index ? "active" : ""}`}>
+            <div
+              key={s.id}
+              className={`banner-slide ${i === index ? "active" : ""}`}
+            >
               <div className="slide-text">
                 <div className="slide-kicker">{s.kicker}</div>
                 <h2 className="slide-title">
