@@ -18,7 +18,7 @@ import {
 import Checkbox from "@mui/material/Checkbox";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import ProductCard from "./categories/ProductCard.jsx"; // <-- Sửa lại đường dẫn import
 
 const mockProducts = [
@@ -86,6 +86,38 @@ const mockProducts = [
       "https://cdn2.cellphones.com.vn/x/media/catalog/product/t/a/tab_s8_1_1_2.jpg",
     category: "Mobiles & Tablets",
   },
+  {
+    id: 9,
+    title: "USB-C Hub",
+    price: 45.0,
+    image:
+      "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/h/thi_t_k_ch_a_c_t_n_12__2.png",
+    category: "Accessories",
+  },
+  {
+    id: 10,
+    title: "4K Monitor",
+    price: 350.0,
+    image:
+      "https://cdn.thewirecutter.com/wp-content/media/2025/06/BEST-4K-MONITORS-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
+    category: "Electronics & Computer",
+  },
+  {
+    id: 11,
+    title: "Mechanical Keyboard",
+    price: 150.0,
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT31Nkz6AHD5Wv6ncHsBXqgG3FnwFX1efSHqg&s",
+    category: "Accessories",
+  },
+  {
+    id: 12,
+    title: "Smart Watch",
+    price: 250.0,
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST6ULRevmuTNy3ji3BO2vGHmyUgtnC2yp3tw&s",
+    category: "SmartPhone & Smart TV",
+  },
 ];
 
 const categories = [
@@ -109,6 +141,30 @@ const Shop = () => {
   const [selectedCategory, setSelectedCategory] = useState(""); // <-- Sửa lại dòng này
 
   const [selectedColor, setSelectedColor] = useState("");
+
+  //Lọc Sản Phẩm Dựa Trên giá
+  const [selectedPrices, setSelectedPrices] = useState({
+    under50: false,
+    "50to100": false,
+    above: false,
+  });
+
+  //Chức Năng Phân Trang
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 8;
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+
+  const handlePriceChange = (event) => {
+    //Lấy cả value và checked từ event
+    const { value, checked } = event.target;
+
+    setSelectedPrices((prevState) => ({
+      ...prevState, //sao chép lại toàn bộ state cũ
+      [value]: checked, // ghi đè giá trị cho đúng key
+    }));
+  };
 
   // "grid" hoặc "list"
   // const [products, setProducts] = useState([]);
@@ -143,6 +199,68 @@ const Shop = () => {
   //      </Box>
   //   );
   // }
+
+  const filteredProducts = useMemo(() => {
+    //Nếu Không có Danh mục Sản Phẩm nào được chọn , trả về tất cả
+    //sản phẩm
+
+    //Bước 1 : LỌC THEO CATEGORY
+    let productsAfterCategoryFilter;
+    if (!selectedCategory) {
+      productsAfterCategoryFilter = mockProducts;
+    } else {
+      productsAfterCategoryFilter = mockProducts.filter(
+        (product) => product.category === selectedCategory
+      );
+    }
+
+    const isPriceFilterActive = Object.values(selectedPrices).includes(true);
+
+    if (!isPriceFilterActive) {
+      //Nếu Không Có Bộ lọc giá nào trả về kết quả bước 1
+      return productsAfterCategoryFilter;
+    }
+
+    //Nếu Có Bộ Lọc giá chúng ta sẽ viết logic ở đây
+    const productsAfterPriceFilter = productsAfterCategoryFilter.filter(
+      (product) => {
+        //Logic kiểm tra giá của từng sản phẩm nằm ở đây, và filter trông đợi trả về true
+
+        //Điều kiện 1: Dưới $50
+        if (selectedPrices.under50 && product.price < 50) {
+          return true;
+        }
+
+        //Điều kiện 2 : Từ $50-$100
+        if (
+          selectedPrices["50to100"] &&
+          product.price >= 50 &&
+          product.price <= 100
+        ) {
+          return true;
+        }
+
+        //Điều kiện 3: Trên $100
+        if (selectedPrices.above && product.price > 100) {
+          return true;
+        }
+
+        //Nếu Không Có Điều kiện nào loại bỏ sản phẩm
+        return false;
+      }
+    );
+
+    //Bước 3 : Trả Về Kết quả Cuối Cùng
+    return productsAfterPriceFilter;
+  }, [selectedCategory, selectedPrices]); //chỉ tính toán lại giá trị khi selectedCategory thay đổi
+
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  //Tính Toán Việc Hiển thị Sản Phẩm ở Mỗi Trang
+  const pageCount = Math.ceil(filteredProducts.length / productsPerPage);
 
   return (
     <Box sx={{ p: 3 }}>
@@ -253,9 +371,16 @@ const Shop = () => {
             </Typography>
             {priceRanges.map((range) => (
               <FormControlLabel
-                key={range.value}
-                control={<Checkbox />}
+                //Tra Cứu state
                 label={range.label}
+                key={range.value}
+                control={
+                  <Checkbox
+                    value={range.value}
+                    checked={selectedPrices[range.value]}
+                    onChange={handlePriceChange}
+                  />
+                }
                 sx={{ ml: 1 }}
               />
             ))}
@@ -344,12 +469,12 @@ const Shop = () => {
             color="text.secondary"
             sx={{ mb: 2, ml: 1 }}
           >
-            Showing {mockProducts.length} results
+            Showing {filteredProducts.length} results
           </Typography>
 
           {/* 2. Lưới sản phẩm -- ĐÚNG: Nằm bên trong cột md={8} */}
           <Grid container spacing={4}>
-            {mockProducts.map((product) => (
+            {currentProducts.map((product) => (
               <Grid item key={product.id} xs={12} sm={6} lg={3}>
                 <ProductCard product={product} />
               </Grid>
@@ -366,7 +491,9 @@ const Shop = () => {
             }}
           >
             <Pagination
-              count={6}
+              count={pageCount}
+              page={currentPage} //Thêm props này để pagination biết ở Trang nào
+              onChange={(event, newPage) => setCurrentPage(newPage)}
               shape="rounded"
               color="primary"
               size="large"
