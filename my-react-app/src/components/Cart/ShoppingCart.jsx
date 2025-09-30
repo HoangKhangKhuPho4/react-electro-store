@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   removeFromCart,
   selectCart,
@@ -187,7 +188,14 @@ function ShoppingCart() {
               ${total.toFixed(2)}
             </Typography>
           </Box>
-          <Button variant="contained" size="large" fullWidth sx={{ mt: 2 }}>
+          <Button
+            variant="contained"
+            size="large"
+            fullWidth
+            sx={{ mt: 2 }}
+            component={Link}
+            to="/checkout"
+          >
             Checkout
           </Button>
         </Box>
