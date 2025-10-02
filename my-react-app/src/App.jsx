@@ -29,6 +29,7 @@ import { store } from "./redux/store";
 import { Provider } from "react-redux";
 import AppSliceDemo from "./components/AppSliceDemo";
 import RTKQueryDemo from "./components/RTKQueryDemo";
+import ProfilePage from "./pages/UserProfile/ProfilePage.jsx";
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
               <Route path="/app-slice-demo" element={<AppSliceDemo />} />
               {/* Thêm route cho Checkout */}
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/profile" element={<ProfilePage />} />
             </Routes>
           </main>
           <Footer />
