@@ -3,7 +3,6 @@ import {
   Box,
   Breadcrumbs,
   Button,
-  Grid,
   IconButton,
   Link as MLink,
   Rating,
@@ -29,6 +28,9 @@ const DUMMY = {
     "https://placekitten.com/802/504",
     "https://placekitten.com/803/504",
     "https://placekitten.com/804/504",
+    "https://placekitten.com/805/504", // <-- Ảnh mới 1
+    "https://placekitten.com/806/504", // <-- Ảnh mới 2
+    "https://placekitten.com/807/504", // <-- Ảnh mới 3
   ],
 };
 
@@ -65,7 +67,7 @@ export default function ProductDetail() {
   const [color, setColor] = useState(product.colors[0]);
 
   return (
-    <Box sx={{ px: { xs: 2, md: 3 }, py: 3, maxWidth: 1200 }}>
+    <Box sx={{ px: { xs: 2, md: 3 }, py: 3, maxWidth: 1200, mx: "auto" }}>
       <Breadcrumbs sx={{ mb: 2 }}>
         <MLink color="inherit" href="/">
           Home
@@ -76,19 +78,31 @@ export default function ProductDetail() {
         <Typography color="text.primary">Product Detail</Typography>
       </Breadcrumbs>
 
-      <Grid container spacing={3}>
-        {/* Left: details */}
-
-        <Grid item xs={12} md={6}>
-          <Grid sx={{ background: "#eee", p: 2, borderRadius: 2 }}>
-            <Box sx={{ overflow: "hidden", borderRadius: 1 }}>
+      {/* Main flexbox container */}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          gap: 3,
+          mb: 3,
+        }}
+      >
+        {/* Cột 1: Image Gallery - 1/3 width */}
+        <Box sx={{ flex: { xs: "1", md: "0 0 33.333%" } }}>
+          <Box sx={{ background: "#eee", p: 2, borderRadius: 2 }}>
+            <Box sx={{ overflow: "hidden", borderRadius: 1, mb: 2 }}>
               <img
                 src={product.images[active]}
                 alt="preview"
-                style={{ width: "100%", display: "block" }}
+                style={{
+                  width: "100%",
+                  height: "400px",
+                  objectFit: "cover",
+                  display: "block",
+                }}
               />
             </Box>
-            <Box sx={{ display: "flex", gap: 1.5, mt: 2, flexWrap: "wrap" }}>
+            <Box sx={{ display: "flex", gap: 1.5, flexWrap: "wrap" }}>
               {product.images.map((src, i) => (
                 <Box
                   key={i}
@@ -117,103 +131,125 @@ export default function ProductDetail() {
                 </Box>
               ))}
             </Box>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
 
-        {/* Right: gallery */}
-        <Grid item xs={12} md={6}>
-          <Typography variant="h5" sx={{ fontWeight: 800 }}>
-            {product.title}
-          </Typography>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1, my: 1 }}>
-            <Rating value={product.rating} precision={0.5} readOnly />
-            <Typography variant="body2" sx={{ color: "#666" }}>
-              {product.reviews} reviews
+        {/* Cột 2: Product Info - 1/3 width */}
+        <Box sx={{ flex: { xs: "1", md: "0 0 33.333%" } }}>
+          <Box sx={{ pl: { md: 2 } }}>
+            <Typography variant="h5" sx={{ fontWeight: 800 }}>
+              {product.title}
             </Typography>
-          </Box>
-          <Typography sx={{ color: "#555", mb: 2 }}>
-            {product.description}
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{ textTransform: "uppercase", fontWeight: 700 }}
-          >
-            current price:{" "}
-            <Box component="span" sx={{ color: "#ff9f1a" }}>
-              ${product.price}
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1, my: 1 }}>
+              <Rating value={product.rating} precision={0.5} readOnly />
+              <Typography variant="body2" sx={{ color: "#666" }}>
+                {product.reviews} reviews
+              </Typography>
             </Box>
-          </Typography>
-          <Box sx={{ my: 2 }}>
+            <Typography sx={{ color: "#555", mb: 2 }}>
+              {product.description}
+            </Typography>
             <Typography
-              variant="subtitle2"
-              sx={{ fontWeight: 700, textTransform: "uppercase", mb: 1 }}
+              variant="h6"
+              sx={{ textTransform: "uppercase", fontWeight: 700 }}
             >
-              sizes:
+              current price:{" "}
+              <Box component="span" sx={{ color: "#ff9f1a" }}>
+                ${product.price}
+              </Box>
             </Typography>
-            <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
-              {product.sizes.map((s) => (
-                <Button
-                  key={s}
-                  variant={size === s ? "contained" : "outlined"}
-                  size="small"
-                  onClick={() => setSize(s)}
-                >
-                  {s}
-                </Button>
-              ))}
+            <Box sx={{ my: 2 }}>
+              <Typography
+                variant="subtitle2"
+                sx={{ fontWeight: 700, textTransform: "uppercase", mb: 1 }}
+              >
+                sizes:
+              </Typography>
+              <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+                {product.sizes.map((s) => (
+                  <Button
+                    key={s}
+                    variant={size === s ? "contained" : "outlined"}
+                    size="small"
+                    onClick={() => setSize(s)}
+                  >
+                    {s}
+                  </Button>
+                ))}
+              </Box>
             </Box>
-          </Box>
-          <Box sx={{ my: 2 }}>
-            <Typography
-              variant="subtitle2"
-              sx={{ fontWeight: 700, textTransform: "uppercase", mb: 1 }}
-            >
-              colors:
-            </Typography>
-            <Box sx={{ display: "flex", gap: 1 }}>
-              {product.colors.map((c) => (
-                <Box
-                  key={c}
-                  onClick={() => setColor(c)}
-                  title={c}
-                  sx={{
-                    width: 28,
-                    height: 28,
-                    borderRadius: 1,
-                    background: c,
-                    cursor: "pointer",
-                    outline:
-                      color === c ? "2px solid #333" : "2px solid transparent",
-                  }}
-                />
-              ))}
+            <Box sx={{ my: 2 }}>
+              <Typography
+                variant="subtitle2"
+                sx={{ fontWeight: 700, textTransform: "uppercase", mb: 1 }}
+              >
+                colors:
+              </Typography>
+              <Box sx={{ display: "flex", gap: 1 }}>
+                {product.colors.map((c) => (
+                  <Box
+                    key={c}
+                    onClick={() => setColor(c)}
+                    title={c}
+                    sx={{
+                      width: 28,
+                      height: 28,
+                      borderRadius: 1,
+                      background: c,
+                      cursor: "pointer",
+                      outline:
+                        color === c
+                          ? "2px solid #333"
+                          : "2px solid transparent",
+                    }}
+                  />
+                ))}
+              </Box>
             </Box>
-          </Box>
 
-          <Box sx={{ display: "flex", gap: 1.5, mt: 2 }}>
-            <Button
-              variant="contained"
-              color="warning"
-              onClick={() =>
-                dispatch(
-                  addToCart({
-                    id: product.id,
-                    name: product.title,
-                    price: product.price,
-                    description: product.description,
-                    image: product.images[0],
-                  })
-                )
-              }
-            >
-              add to cart
-            </Button>
-            <IconButton>
-              <FavoriteBorderIcon />
-            </IconButton>
+            <Box sx={{ display: "flex", gap: 1.5, mt: 2 }}>
+              <Button
+                variant="contained"
+                color="warning"
+                onClick={() =>
+                  dispatch(
+                    addToCart({
+                      id: product.id,
+                      name: product.title,
+                      price: product.price,
+                      description: product.description,
+                      image: product.images[0],
+                    })
+                  )
+                }
+              >
+                add to cart
+              </Button>
+              <IconButton>
+                <FavoriteBorderIcon />
+              </IconButton>
+            </Box>
           </Box>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
+
+      {/* Cột 3: Empty space - Full width, xuống dưới */}
+      <Box
+        sx={{
+          width: "100%",
+          minHeight: "200px",
+          background: "#f9f9f9",
+          borderRadius: 2,
+          border: "2px dashed #ddd",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Typography variant="h6" color="text.secondary">
+          Cột thứ 3 - Có thể thêm content sau
+        </Typography>
+      </Box>
     </Box>
   );
 }
