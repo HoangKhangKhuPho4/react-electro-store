@@ -12,7 +12,7 @@ import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
-
+import OrderHistoryPage from "./pages/Order-Management/OrderHistoryPage.jsx";
 // Pages
 import ShoppingCart from "./components/Cart/ShoppingCart.jsx";
 import ProductDetail from "./components/Product-Details";
@@ -49,6 +49,8 @@ function App() {
               <Route path="/shop" element={<Shop />} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/user/orders" element={<OrderHistoryPage />} />{" "}
+              {/* <-- THÊM DÒNG NÀY */}
               <Route path="/register" element={<Register />} />
               <Route path="/cart" element={<ShoppingCart />} />
               <Route path="/contact" element={<Contact />} />

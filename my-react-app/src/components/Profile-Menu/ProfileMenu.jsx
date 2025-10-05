@@ -15,9 +15,16 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 // Component giờ đây nhận vào một prop tên là `activePage`
 const ProfileMenu = ({ activePage }) => {
+  const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
+
   return (
     <Paper sx={{ borderRadius: 2, height: "100%" }}>
       <List sx={{ p: 1 }}>
@@ -89,11 +96,42 @@ const ProfileMenu = ({ activePage }) => {
         </ListItem>
 
         <ListItem disablePadding>
-          <ListItemButton selected={activePage === "Đơn Mua"}>
+          <ListItemButton
+            selected={activePage === "Đơn Mua"}
+            onClick={() => handleNavigation("/user/orders")}
+          >
             <ListItemIcon sx={{ minWidth: 40, color: "#42a5f5" }}>
               <DescriptionOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Đơn Mua" />
+          </ListItemButton>
+        </ListItem>
+
+        {/* Sub-items cho Đơn Mua */}
+        <ListItem disablePadding sx={{ pl: 4 }}>
+          <ListItemButton
+            selected={activePage === "Tất Cả Đơn"}
+            onClick={() => handleNavigation("/user/orders?status=all")}
+          >
+            <ListItemText primary="Tất Cả Đơn" />
+          </ListItemButton>
+        </ListItem>
+
+        <ListItem disablePadding sx={{ pl: 4 }}>
+          <ListItemButton
+            selected={activePage === "Chờ Xác Nhận"}
+            onClick={() => handleNavigation("/user/orders?status=pending")}
+          >
+            <ListItemText primary="Chờ Xác Nhận" />
+          </ListItemButton>
+        </ListItem>
+
+        <ListItem disablePadding sx={{ pl: 4 }}>
+          <ListItemButton
+            selected={activePage === "Đang Giao"}
+            onClick={() => handleNavigation("/user/orders?status=shipping")}
+          >
+            <ListItemText primary="Đang Giao" />
           </ListItemButton>
         </ListItem>
 
