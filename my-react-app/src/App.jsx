@@ -28,8 +28,14 @@ import ProfilePage from "./pages/UserProfile/ProfilePage.jsx";
 import Wishlist from "./pages/Wishlist/Wishlist";
 
 // Admin Pages
+import AnalyticsPage from "./pages/Admin-Analytics/AnalyticsPage.jsx";
+import BannerManagementPage from "./pages/Admin-Banner/BannerManagementPage.jsx";
+import CategoryManagementPage from "./pages/Admin-Categories/CategoryManagementPage.jsx";
+import CustomerManagementPage from "./pages/Admin-Customers/CustomerManagementPage.jsx";
 import DashboardPage from "./pages/Admin-Dashboard/DashboardPage.jsx";
+import InventoryManagementPage from "./pages/Admin-Inventory/InventoryManagementPage.jsx";
 import OrderManagementPage from "./pages/Admin-Orders/OrderManagementPage.jsx";
+import PostManagementPage from "./pages/Admin-Posts/PostManagementPage.jsx";
 import ProductManagementPage from "./pages/Admin-Products/ProductManagementPage.jsx";
 
 // Redux
@@ -51,15 +57,22 @@ function App() {
                 <Routes>
                   <Route index element={<DashboardPage />} />
                   <Route path="products" element={<ProductManagementPage />} />
+                  <Route
+                    path="categories"
+                    element={<CategoryManagementPage />}
+                  />
                   <Route path="orders" element={<OrderManagementPage />} />
                   <Route
-                    path="customers"
-                    element={<div>Admin Customers Page</div>}
+                    path="inventory"
+                    element={<InventoryManagementPage />}
                   />
                   <Route
-                    path="analytics"
-                    element={<div>Admin Analytics Page</div>}
+                    path="customers"
+                    element={<CustomerManagementPage />}
                   />
+                  <Route path="banners" element={<BannerManagementPage />} />
+                  <Route path="posts" element={<PostManagementPage />} />
+                  <Route path="analytics" element={<AnalyticsPage />} />
                   <Route
                     path="settings"
                     element={<div>Admin Settings Page</div>}

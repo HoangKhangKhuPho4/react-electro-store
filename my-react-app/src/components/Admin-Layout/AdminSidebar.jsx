@@ -1,11 +1,15 @@
 import {
   BarChart as AnalyticsIcon,
+  Article as ArticleIcon,
+  Image as BannerIcon,
+  Category as CategoryIcon,
   Dashboard as DashboardIcon,
   Inventory as InventoryIcon,
   ShoppingCart as OrdersIcon,
   People as PeopleIcon,
   Settings as SettingsIcon,
   Store as StoreIcon,
+  Warehouse as WarehouseIcon,
 } from "@mui/icons-material";
 import {
   Avatar,
@@ -25,8 +29,12 @@ const AdminSidebar = ({ currentPage, collapsed = false }) => {
   const menuItems = [
     { text: "Dashboard", icon: <DashboardIcon />, path: "/admin" },
     { text: "Sản phẩm", icon: <InventoryIcon />, path: "/admin/products" },
+    { text: "Danh mục", icon: <CategoryIcon />, path: "/admin/categories" },
     { text: "Đơn hàng", icon: <OrdersIcon />, path: "/admin/orders" },
+    { text: "Tồn kho", icon: <WarehouseIcon />, path: "/admin/inventory" },
     { text: "Khách hàng", icon: <PeopleIcon />, path: "/admin/customers" },
+    { text: "Banner", icon: <BannerIcon />, path: "/admin/banners" },
+    { text: "Bài viết", icon: <ArticleIcon />, path: "/admin/posts" },
     { text: "Thống kê", icon: <AnalyticsIcon />, path: "/admin/analytics" },
     { text: "Cài đặt", icon: <SettingsIcon />, path: "/admin/settings" },
   ];
@@ -142,11 +150,23 @@ const AdminSidebar = ({ currentPage, collapsed = false }) => {
                 {item.text === "Sản phẩm" && (
                   <InventoryIcon sx={{ fontSize: collapsed ? 18 : 20 }} />
                 )}
+                {item.text === "Danh mục" && (
+                  <CategoryIcon sx={{ fontSize: collapsed ? 18 : 20 }} />
+                )}
                 {item.text === "Đơn hàng" && (
                   <OrdersIcon sx={{ fontSize: collapsed ? 18 : 20 }} />
                 )}
+                {item.text === "Tồn kho" && (
+                  <WarehouseIcon sx={{ fontSize: collapsed ? 18 : 20 }} />
+                )}
                 {item.text === "Khách hàng" && (
                   <PeopleIcon sx={{ fontSize: collapsed ? 18 : 20 }} />
+                )}
+                {item.text === "Banner" && (
+                  <BannerIcon sx={{ fontSize: collapsed ? 18 : 20 }} />
+                )}
+                {item.text === "Bài viết" && (
+                  <ArticleIcon sx={{ fontSize: collapsed ? 18 : 20 }} />
                 )}
                 {item.text === "Thống kê" && (
                   <AnalyticsIcon sx={{ fontSize: collapsed ? 18 : 20 }} />
