@@ -129,40 +129,63 @@ const DashboardPage = () => {
 
   return (
     <AdminLayout currentPage="Dashboard">
-      <Box>
-        <Grid container spacing={3}>
-          {/* Row 1: Stats Cards - Khách hàng và Đơn hàng trên 1 dòng */}
-          <Grid item xs={12} sm={6} md={6}>
+      {/* 🔥 GIẢM PADDING VÀ MARGIN TỐI ĐA */}
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: "100%",
+          p: 0.5, // Padding nhỏ để tránh sát viền
+          m: 0,
+          height: "100%",
+        }}
+      >
+        <Grid container spacing={0}>
+          {" "}
+          {/* 🔥 LOẠI BỎ spacing để đồng bộ chiều ngang với hàng 2,3 */}
+          {/* HÀG 1: Customer và Order - mỗi cái chiếm 50% */}
+          <Grid item xs={12} md={6} sx={{ pr: { md: 0.5 } }}>
             <Card
-              sx={{ borderRadius: 3, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}
+              sx={{
+                borderRadius: 3,
+                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                height: 300, // 🔥 STANDARDIZE: Tất cả cards đều 300px
+              }}
             >
-              <CardContent sx={{ p: 4 }}>
-                <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
+              <CardContent sx={{ p: 3, height: "100%" }}>
+                {" "}
+                {/* 🔥 TĂNG: Từ p: 2 lên p: 3 */}
+                <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
                   <Box
                     sx={{
-                      p: 2,
-                      borderRadius: 2,
-                      backgroundColor: "#f8f9fa",
-                      color: "#6c757d",
+                      p: 2.5, // 🔥 TĂNG: Từ 1.5 lên 2.5
+                      borderRadius: 3,
+                      backgroundColor: "#e3f2fd",
+                      color: "#1976d2",
                     }}
                   >
-                    <People sx={{ fontSize: 32 }} />
+                    <People sx={{ fontSize: 42 }} />{" "}
+                    {/* 🔥 TĂNG: Từ 32 lên 42 */}
                   </Box>
                   <Box sx={{ flex: 1 }}>
                     <Typography
-                      variant="body2"
+                      variant="h6" // 🔥 TĂNG: Từ body1 lên h6
                       color="text.secondary"
-                      sx={{ mb: 1 }}
+                      sx={{ mb: 1, fontWeight: 500 }} // 🔥 TĂNG margin bottom
                     >
-                      Khách hàng
+                      Customers
                     </Typography>
-                    <Typography variant="h3" fontWeight={700} sx={{ mb: 1 }}>
+                    <Typography
+                      variant="h2" // 🔥 TĂNG: Từ h3 lên h2
+                      fontWeight={700}
+                      sx={{ mb: 1, fontSize: "2.5rem" }} // 🔥 TĂNG: Từ 2rem lên 2.5rem
+                    >
                       3,782
                     </Typography>
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <TrendingUp sx={{ color: "#22c55e", fontSize: 16 }} />
+                      <TrendingUp sx={{ color: "#22c55e", fontSize: 24 }} />{" "}
+                      {/* 🔥 TĂNG: Từ 18 lên 24 */}
                       <Typography
-                        variant="body2"
+                        variant="h6" // 🔥 TĂNG: Từ body1 lên h6
                         sx={{ color: "#22c55e", fontWeight: 600 }}
                       >
                         11.01%
@@ -173,38 +196,49 @@ const DashboardPage = () => {
               </CardContent>
             </Card>
           </Grid>
-
-          <Grid item xs={12} sm={6} md={6}>
+          <Grid item xs={12} md={6} sx={{ pl: { md: 0.5 } }}>
             <Card
-              sx={{ borderRadius: 3, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}
+              sx={{
+                borderRadius: 3,
+                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                height: 300, // 🔥 STANDARDIZE: Tất cả cards đều 300px
+              }}
             >
-              <CardContent sx={{ p: 4 }}>
-                <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
+              <CardContent sx={{ p: 3, height: "100%" }}>
+                {" "}
+                {/* 🔥 TĂNG: Từ p: 2 lên p: 3 */}
+                <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
                   <Box
                     sx={{
-                      p: 2,
-                      borderRadius: 2,
-                      backgroundColor: "#f8f9fa",
-                      color: "#6c757d",
+                      p: 2.5, // 🔥 TĂNG: Từ 1.5 lên 2.5
+                      borderRadius: 3,
+                      backgroundColor: "#fff3e0",
+                      color: "#f57c00",
                     }}
                   >
-                    <ShoppingCart sx={{ fontSize: 32 }} />
+                    <ShoppingCart sx={{ fontSize: 42 }} />{" "}
+                    {/* 🔥 TĂNG: Từ 32 lên 42 */}
                   </Box>
                   <Box sx={{ flex: 1 }}>
                     <Typography
-                      variant="body2"
+                      variant="h6" // 🔥 TĂNG: Từ body1 lên h6
                       color="text.secondary"
-                      sx={{ mb: 1 }}
+                      sx={{ mb: 1, fontWeight: 500 }} // 🔥 TĂNG margin bottom
                     >
-                      Đơn hàng
+                      Orders
                     </Typography>
-                    <Typography variant="h3" fontWeight={700} sx={{ mb: 1 }}>
+                    <Typography
+                      variant="h2" // 🔥 TĂNG: Từ h3 lên h2
+                      fontWeight={700}
+                      sx={{ mb: 1, fontSize: "2.5rem" }} // 🔥 TĂNG: Từ 2rem lên 2.5rem
+                    >
                       5,359
                     </Typography>
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <TrendingDown sx={{ color: "#ef4444", fontSize: 16 }} />
+                      <TrendingDown sx={{ color: "#ef4444", fontSize: 24 }} />{" "}
+                      {/* 🔥 TĂNG: Từ 18 lên 24 */}
                       <Typography
-                        variant="body2"
+                        variant="h6" // 🔥 TĂNG: Từ body1 lên h6
                         sx={{ color: "#ef4444", fontWeight: 600 }}
                       >
                         9.05%
@@ -215,43 +249,40 @@ const DashboardPage = () => {
               </CardContent>
             </Card>
           </Grid>
-
-          {/* Row 2: Doanh thu và Mục tiêu trên 1 dòng */}
-          <Grid item xs={12} sm={6} md={8}>
-            {/* Monthly Sales Chart */}
+          {/* HÀG 2: Monthly Sales - COMPACT */}
+          <Grid item xs={12}>
             <Card
               sx={{
                 borderRadius: 3,
-                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-                height: 400,
+                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                height: 300, // 🔥 STANDARDIZE: Tất cả cards đều 300px
               }}
             >
-              <CardContent sx={{ p: 4, height: "100%" }}>
+              <CardContent sx={{ p: 3, height: "100%" }}>
+                {" "}
+                {/* 🔥 ĐỒNG BỘ: Padding 3 như các hàng khác */}
                 <Box
                   sx={{
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    mb: 3,
+                    mb: 1.5,
                   }}
                 >
                   <Typography variant="h6" fontWeight={600}>
-                    Doanh thu theo tháng
+                    Monthly Sales
                   </Typography>
                   <IconButton size="small">
                     <MoreVert />
                   </IconButton>
                 </Box>
-
-                {/* Custom Bar Chart */}
                 <Box
                   sx={{
                     display: "flex",
                     alignItems: "end",
-                    gap: 2,
-                    height: 280,
-                    px: 2,
-                    pb: 2,
+                    gap: 0.5, // Giảm gap
+                    height: 220, // 🔥 TĂNG: Từ 200px lên 220px để phù hợp với card 300px
+                    px: 1.5, // Giảm padding
                   }}
                 >
                   {monthlyData.map((item) => (
@@ -262,14 +293,14 @@ const DashboardPage = () => {
                         flexDirection: "column",
                         alignItems: "center",
                         flex: 1,
-                        gap: 1,
+                        gap: 0.5,
                       }}
                     >
                       <Box
                         sx={{
                           width: "100%",
-                          maxWidth: 32,
-                          height: (item.value / maxValue) * 200,
+                          maxWidth: 28, // Giảm width
+                          height: (item.value / maxValue) * 160, // Giảm height
                           backgroundColor: "#3b82f6",
                           borderRadius: 1,
                           transition: "all 0.2s ease",
@@ -282,55 +313,47 @@ const DashboardPage = () => {
                       <Typography
                         variant="caption"
                         color="text.secondary"
-                        sx={{ fontSize: 12 }}
+                        sx={{ fontSize: "0.7rem" }}
                       >
                         {item.month}
                       </Typography>
                     </Box>
                   ))}
                 </Box>
-
-                {/* Y-axis labels */}
                 <Box
                   sx={{
                     display: "flex",
                     justifyContent: "space-between",
-                    mt: 2,
-                    px: 2,
+                    mt: 1,
+                    px: 1.5,
                   }}
                 >
-                  <Typography variant="caption" color="text.secondary">
-                    0
-                  </Typography>
-                  <Typography variant="caption" color="text.secondary">
-                    100
-                  </Typography>
-                  <Typography variant="caption" color="text.secondary">
-                    200
-                  </Typography>
-                  <Typography variant="caption" color="text.secondary">
-                    300
-                  </Typography>
-                  <Typography variant="caption" color="text.secondary">
-                    400
-                  </Typography>
+                  {[0, 100, 200, 300, 400].map((value) => (
+                    <Typography
+                      key={value}
+                      variant="caption"
+                      color="text.secondary"
+                      sx={{ fontSize: "0.7rem" }}
+                    >
+                      {value}
+                    </Typography>
+                  ))}
                 </Box>
               </CardContent>
             </Card>
           </Grid>
-
-          <Grid item xs={12} sm={6} md={4}>
-            {/* Monthly Target */}
+          {/* HÀG 3: Monthly Target - FULL WIDTH */}
+          <Grid item xs={12}>
             <Card
               sx={{
                 borderRadius: 3,
-                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-                height: 400,
+                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                height: 300, // 🔥 STANDARDIZE: Tất cả cards đều 300px
               }}
             >
               <CardContent
                 sx={{
-                  p: 4,
+                  p: 3,
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
@@ -341,39 +364,29 @@ const DashboardPage = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    mb: 3,
+                    mb: 2,
                   }}
                 >
                   <Typography variant="h6" fontWeight={600}>
-                    Mục tiêu hàng tháng
+                    Monthly Target
                   </Typography>
                   <IconButton size="small">
                     <MoreVert />
                   </IconButton>
                 </Box>
 
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{ mb: 4 }}
-                >
-                  Mục tiêu bạn đã đặt cho mỗi tháng
-                </Typography>
-
-                {/* Circular Progress */}
                 <Box
                   sx={{
                     display: "flex",
-                    justifyContent: "center",
                     alignItems: "center",
+                    gap: 4, // Tăng gap cho full width
                     flex: 1,
-                    position: "relative",
                   }}
                 >
                   <Box
                     sx={{
-                      width: 160,
-                      height: 160,
+                      width: 120, // Tăng size cho full width
+                      height: 120,
                       borderRadius: "50%",
                       background: `conic-gradient(#3b82f6 0deg ${
                         75.55 * 3.6
@@ -381,13 +394,13 @@ const DashboardPage = () => {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      position: "relative",
+                      flexShrink: 0,
                     }}
                   >
                     <Box
                       sx={{
-                        width: 120,
-                        height: 120,
+                        width: 90,
+                        height: 90,
                         borderRadius: "50%",
                         backgroundColor: "white",
                         display: "flex",
@@ -396,77 +409,91 @@ const DashboardPage = () => {
                         justifyContent: "center",
                       }}
                     >
-                      <Typography variant="h3" fontWeight={700}>
-                        75.55%
+                      <Typography
+                        variant="h6"
+                        fontWeight={700}
+                        sx={{ fontSize: "1.2rem" }}
+                      >
+                        75%
                       </Typography>
                       <Typography
                         variant="body2"
-                        sx={{ color: "#22c55e", fontWeight: 600 }}
+                        sx={{
+                          color: "#22c55e",
+                          fontWeight: 600,
+                          fontSize: "0.8rem",
+                        }}
                       >
                         +10%
                       </Typography>
                     </Box>
                   </Box>
-                </Box>
 
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  textAlign="center"
-                  sx={{ mt: 2 }}
-                >
-                  Bạn đã kiếm được 3,287$ hôm nay, cao hơn tháng trước.
-                  <br />
-                  Tiếp tục phát huy nhé!
-                </Typography>
-
-                {/* Target Stats */}
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    mt: 4,
-                  }}
-                >
-                  <Box sx={{ textAlign: "center" }}>
-                    <Typography variant="body2" color="text.secondary">
-                      Mục tiêu
+                  <Box sx={{ flex: 1 }}>
+                    <Typography
+                      variant="h4"
+                      fontWeight={700}
+                      sx={{ mb: 1, fontSize: "2rem" }}
+                    >
+                      $3,287
                     </Typography>
-                    <Typography variant="h6" fontWeight={600}>
-                      $20K ↓
+                    <Typography
+                      variant="body1"
+                      color="text.secondary"
+                      sx={{ fontSize: "1rem", mb: 0.5 }}
+                    >
+                      Today's earnings
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: "#22c55e",
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                      }}
+                    >
+                      +10% vs last month
                     </Typography>
                   </Box>
+
+                  {/* Thêm thông tin bổ sung cho full width */}
                   <Box sx={{ textAlign: "center" }}>
-                    <Typography variant="body2" color="text.secondary">
-                      Doanh thu
+                    <Typography variant="h5" fontWeight={700} color="primary">
+                      $4,350
                     </Typography>
-                    <Typography variant="h6" fontWeight={600}>
-                      $20K ↑
+                    <Typography variant="body2" color="text.secondary">
+                      Target Goal
                     </Typography>
                   </Box>
+
                   <Box sx={{ textAlign: "center" }}>
-                    <Typography variant="body2" color="text.secondary">
-                      Hôm nay
+                    <Typography
+                      variant="h5"
+                      fontWeight={700}
+                      color="success.main"
+                    >
+                      89.2%
                     </Typography>
-                    <Typography variant="h6" fontWeight={600}>
-                      $20K ↑
+                    <Typography variant="body2" color="text.secondary">
+                      Achievement
                     </Typography>
                   </Box>
                 </Box>
               </CardContent>
             </Card>
           </Grid>
-
-          {/* Row 3: Statistics trên 1 dòng full width */}
+          {/* HÀG 4: Statistics - THỰC SỰ FULL WIDTH */}
           <Grid item xs={12}>
             <Card
               sx={{
                 borderRadius: 3,
                 boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-                height: 400,
+                height: 300, // 🔥 STANDARDIZE: Tất cả cards đều 300px
               }}
             >
-              <CardContent sx={{ p: 4 }}>
+              <CardContent sx={{ p: 3, height: "100%" }}>
+                {" "}
+                {/* Giảm từ p: 4 xuống p: 3 */}
                 <Box
                   sx={{
                     display: "flex",
@@ -499,9 +526,10 @@ const DashboardPage = () => {
                     <Tab label="Annually" />
                   </Tabs>
                 </Box>
-
                 {/* Area Chart */}
-                <Box sx={{ height: 300, position: "relative" }}>
+                <Box sx={{ height: 200, position: "relative" }}>
+                  {" "}
+                  {/* 🔥 GIẢM: Từ 300px xuống 200px để phù hợp với card 300px */}
                   {/* Y-axis */}
                   <Box
                     sx={{
@@ -530,7 +558,6 @@ const DashboardPage = () => {
                       </Box>
                     ))}
                   </Box>
-
                   {/* Chart area */}
                   <Box
                     sx={{
@@ -621,7 +648,6 @@ const DashboardPage = () => {
                       />
                     </svg>
                   </Box>
-
                   {/* X-axis labels */}
                   <Box
                     sx={{
@@ -658,17 +684,18 @@ const DashboardPage = () => {
               </CardContent>
             </Card>
           </Grid>
-
-          {/* Row 4: Customers Demographic và Recent Orders trên 1 dòng */}
-          <Grid item xs={12} sm={6} md={5}>
+          {/* HÀG 5: Customers Demographic + Recent Orders */}
+          <Grid item xs={12} md={6}>
             <Card
               sx={{
                 borderRadius: 3,
                 boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-                height: 500,
+                height: 300, // 🔥 STANDARDIZE: Tất cả cards đều 300px
               }}
             >
-              <CardContent sx={{ p: 4, height: "100%" }}>
+              <CardContent sx={{ p: 3, height: "100%" }}>
+                {" "}
+                {/* Giảm từ p: 4 xuống p: 3 */}
                 <Box
                   sx={{
                     display: "flex",
@@ -689,11 +716,10 @@ const DashboardPage = () => {
                     <MoreVert />
                   </IconButton>
                 </Box>
-
                 {/* World Map Placeholder */}
                 <Box
                   sx={{
-                    height: 200,
+                    height: 120, // 🔥 GIẢM: Từ 200px xuống 120px để phù hợp với card 300px
                     backgroundColor: "#f8f9fa",
                     borderRadius: 2,
                     display: "flex",
@@ -710,7 +736,6 @@ const DashboardPage = () => {
                     🌍 World Map Visualization
                   </Typography>
                 </Box>
-
                 {/* Country Stats */}
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
                   <Box
@@ -808,16 +833,17 @@ const DashboardPage = () => {
               </CardContent>
             </Card>
           </Grid>
-
-          <Grid item xs={12} sm={6} md={7}>
+          <Grid item xs={12} md={6}>
             <Card
               sx={{
                 borderRadius: 3,
                 boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-                height: 500,
+                height: 300, // 🔥 STANDARDIZE: Tất cả cards đều 300px
               }}
             >
-              <CardContent sx={{ p: 4, height: "100%" }}>
+              <CardContent sx={{ p: 3, height: "100%" }}>
+                {" "}
+                {/* 🔥 Giảm từ p: 4 xuống p: 3 */}
                 <Box
                   sx={{
                     display: "flex",
@@ -847,7 +873,6 @@ const DashboardPage = () => {
                     </Button>
                   </Box>
                 </Box>
-
                 <TableContainer>
                   <Table>
                     <TableHead>

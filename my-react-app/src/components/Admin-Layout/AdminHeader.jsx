@@ -51,51 +51,115 @@ const AdminHeader = ({
     navigate("/admin/settings");
   };
 
+  // 🔥 SỬA CHÍNH: Đảm bảo drawerWidth đồng bộ với AdminLayout
   const drawerWidth = sidebarCollapsed ? COLLAPSED_WIDTH : DRAWER_WIDTH;
 
   return (
     <AppBar
       position="fixed"
       sx={{
-        width: { xs: "100%", md: `calc(100% - ${drawerWidth}px)` },
-        ml: { xs: 0, md: `${drawerWidth}px` },
-        background: "#FFFFFF", // <-- Đổi nền thành trắng cho giống mẫu
-        color: "#555", // <-- Đổi màu chữ/icon
+        // 🔥 KHẮC PHỤC: Loại bỏ margin-left để tránh khoảng trống
+        width: "100%",
+        left: 0,
+        right: 0,
+        top: 0,
+        background: "#FFFFFF",
+        color: "#555",
         boxShadow: "0 1px 4px rgba(0,0,0,0.1)",
         zIndex: (theme) => theme.zIndex.drawer + 1,
-        transition: "margin-left 0.3s ease, width 0.3s ease",
+        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
-      <Toolbar sx={{ minHeight: "64px !important", px: 3 }}>
-        {/* Nút Menu giờ sẽ luôn hiển thị */}
+      <Toolbar sx={{ minHeight: "64px !important", px: 2 }}>
+        {" "}
+        {/* 🔥 Giảm padding từ 3 xuống 2 */}
+        {/* Nút Menu mobile - Custom hiệu ứng */}
         <IconButton
           color="inherit"
           aria-label="open drawer"
           edge="start"
           onClick={onDrawerToggle}
-          sx={{ mr: 2, display: { xs: "block", md: "none" } }} // <-- Hiển thị trên thiết bị di động
-        >
-          <MenuIcon />
-        </IconButton>
+          disableRipple // 🔥 TẮT ripple effect
+          sx={{
+            mr: 2,
+            display: { xs: "block", md: "none" },
+            // 🔥 CUSTOM EFFECTS tương tự desktop
+            borderRadius: 2,
+            padding: 1.5,
+            transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+            backgroundColor: "transparent",
 
-        {/* Nút chuyển đổi thanh bên (sidebar) chỉ hiển thị trên màn hình lớn */}
+            "&:hover": {
+              backgroundColor: "rgba(0, 0, 0, 0.04)",
+              transform: "scale(1.05)",
+            },
+
+            "&:active": {
+              backgroundColor: "rgba(0, 0, 0, 0.08)",
+              transform: "scale(0.95)",
+            },
+
+            "&:focus": {
+              backgroundColor: "rgba(0, 0, 0, 0.04)",
+              outline: "2px solid rgba(255, 159, 26, 0.3)",
+              outlineOffset: "2px",
+            },
+          }}
+        >
+          <MenuIcon sx={{ fontSize: 20 }} />
+        </IconButton>
+        {/* Nút toggle sidebar desktop - Custom hiệu ứng */}
         <IconButton
           color="inherit"
           aria-label="toggle sidebar"
           edge="start"
           onClick={onSidebarToggle}
-          sx={{ mr: 2, display: { xs: "none", md: "block" } }} // <-- Ẩn trên thiết bị di động
-        >
-          <MenuIcon />
-        </IconButton>
+          disableRipple // 🔥 TẮT ripple effect mặc định
+          sx={{
+            mr: 2,
+            display: { xs: "none", md: "block" },
+            // 🔥 CUSTOM EFFECTS: Hiệu ứng thân thiện hơn
+            borderRadius: 2, // Bo góc mềm mại
+            padding: 1.5,
+            transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+            backgroundColor: "transparent",
 
-        {/* Thanh tìm kiếm mới */}
+            // Hiệu ứng hover
+            "&:hover": {
+              backgroundColor: "rgba(0, 0, 0, 0.04)", // Nền nhẹ khi hover
+              transform: "scale(1.05)", // Phóng to nhẹ
+            },
+
+            // Hiệu ứng khi active (đang click)
+            "&:active": {
+              backgroundColor: "rgba(0, 0, 0, 0.08)",
+              transform: "scale(0.95)", // Thu nhỏ khi click
+            },
+
+            // Hiệu ứng focus (dành cho keyboard navigation)
+            "&:focus": {
+              backgroundColor: "rgba(0, 0, 0, 0.04)",
+              outline: "2px solid rgba(255, 159, 26, 0.3)", // Viền màu cam nhẹ
+              outlineOffset: "2px",
+            },
+          }}
+        >
+          <MenuIcon
+            sx={{
+              fontSize: 20,
+              transition: "transform 0.2s ease",
+              // 🔥 Xoay icon khi sidebar collapsed/expanded
+              transform: sidebarCollapsed ? "rotate(0deg)" : "rotate(90deg)",
+            }}
+          />
+        </IconButton>
+        {/* 🔥 SỬA: Thanh tìm kiếm responsive */}
         <TextField
           variant="outlined"
           size="small"
           placeholder="Search or type command..."
           sx={{
-            width: 350,
+            width: { xs: 200, sm: 300, md: sidebarCollapsed ? 400 : 300 }, // 🔥 Dynamic width dựa trên sidebar state
             "& .MuiOutlinedInput-root": {
               borderRadius: 2,
               backgroundColor: "#f5f5f5",
@@ -105,26 +169,56 @@ const AdminHeader = ({
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <SearchIcon />
+                <SearchIcon sx={{ fontSize: 18 }} /> {/* 🔥 Giảm icon size */}
               </InputAdornment>
             ),
           }}
         />
-
-        {/* Box này sẽ đẩy các icon còn lại sang phải */}
         <Box sx={{ flexGrow: 1 }} />
+        {/* Icons bên phải - Custom hiệu ứng */}
+        <IconButton
+          color="inherit"
+          disableRipple
+          sx={{
+            mr: 1.5,
+            borderRadius: 2,
+            padding: 1.5,
+            transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
 
-        {/* Các icon bên phải (giữ nguyên) */}
-        <IconButton color="inherit" sx={{ mr: 2 }}>
+            "&:hover": {
+              backgroundColor: "rgba(0, 0, 0, 0.04)",
+              transform: "translateY(-1px)", // Nâng lên nhẹ thay vì scale
+            },
+
+            "&:active": {
+              transform: "translateY(0px)",
+            },
+          }}
+        >
           <Badge badgeContent={4} color="error">
-            <NotificationsIcon />
+            <NotificationsIcon sx={{ fontSize: 22 }} />
           </Badge>
         </IconButton>
+        <IconButton
+          onClick={handleProfileMenuOpen}
+          disableRipple
+          sx={{
+            p: 1,
+            borderRadius: 2,
+            transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
 
-        <IconButton onClick={handleProfileMenuOpen} sx={{ p: 0 }}>
-          <Avatar sx={{ bgcolor: "#ff9f1a", width: 40, height: 40 }}>A</Avatar>
+            "&:hover": {
+              backgroundColor: "rgba(255, 159, 26, 0.08)", // Màu cam nhẹ cho avatar
+              transform: "scale(1.05)",
+            },
+
+            "&:active": {
+              transform: "scale(0.95)",
+            },
+          }}
+        >
+          <Avatar sx={{ bgcolor: "#ff9f1a", width: 36, height: 36 }}>A</Avatar>
         </IconButton>
-
         <Menu
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}

@@ -30,13 +30,13 @@ const AdminLayout = ({ children, currentPage = "Dashboard" }) => {
         sidebarCollapsed={sidebarCollapsed}
       />
 
-      {/* Sidebar Drawer Container */}
+      {/* Sidebar Drawer Container - LOẠI BỎ WIDTH */}
       <Box
         component="nav"
         sx={{
-          width: { xs: 0, md: drawerWidth },
+          // 🔥 KHẮC PHỤC: Bỏ width để tránh double spacing
           flexShrink: 0,
-          transition: "width 0.3s ease",
+          display: { xs: "none", md: "block" },
         }}
       >
         {/* Mobile Drawer */}
@@ -57,7 +57,7 @@ const AdminLayout = ({ children, currentPage = "Dashboard" }) => {
           <AdminSidebar currentPage={currentPage} collapsed={false} />
         </Drawer>
 
-        {/* Desktop Drawer */}
+        {/* Desktop Drawer - CẢI THIỆN TRANSITION */}
         <Drawer
           variant="permanent"
           sx={{
@@ -67,9 +67,12 @@ const AdminLayout = ({ children, currentPage = "Dashboard" }) => {
               width: drawerWidth,
               position: "fixed",
               height: "100vh",
+              top: 0,
+              left: 0,
               zIndex: (theme) => theme.zIndex.appBar - 1,
-              transition: "width 0.3s ease",
+              transition: "width 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
               overflowX: "hidden",
+              backgroundColor: "#ffffff",
             },
           }}
           open
@@ -81,18 +84,23 @@ const AdminLayout = ({ children, currentPage = "Dashboard" }) => {
         </Drawer>
       </Box>
 
-      {/* Main Content Area */}
+      {/* Main Content Area - HOÀN TOÀN KHẮC PHỤC */}
       <Box
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
-          width: { xs: "100%", md: `calc(100% - ${drawerWidth}px)` },
+          // 🔥 KHẮC PHỤC CHÍNH: Đồng bộ margin-left với drawer width
           ml: { xs: 0, md: `${drawerWidth}px` },
           mt: "64px",
           minHeight: "calc(100vh - 64px)",
+          height: "calc(100vh - 64px)",
           backgroundColor: "#f8f9fa",
-          transition: "margin-left 0.3s ease, width 0.3s ease",
+          transition: "margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+          overflow: "auto",
+          position: "relative",
+          // 🔥 THÊM: Đảm bảo content fill toàn bộ không gian còn lại
+          width: `calc(100% - ${drawerWidth}px)`,
+          maxWidth: "none",
         }}
       >
         {children}

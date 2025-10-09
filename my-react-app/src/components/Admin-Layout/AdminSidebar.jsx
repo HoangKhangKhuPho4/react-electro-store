@@ -5,7 +5,7 @@ import {
   ShoppingCart as OrdersIcon,
   People as PeopleIcon,
   Settings as SettingsIcon,
-  Store as StoreIcon, // Icon thương hiệu
+  Store as StoreIcon,
 } from "@mui/icons-material";
 import {
   Avatar,
@@ -36,100 +36,124 @@ const AdminSidebar = ({ currentPage, collapsed = false }) => {
   };
 
   return (
-    <Box>
-      {/* Brand Header Section - Clean design */}
+    <Box sx={{ height: "100%", overflow: "hidden" }}>
+      {/* Brand Header Section - Thêm padding-top để tránh bị che */}
       <Box
         sx={{
-          // --- THAY ĐỔI: Dùng py và px để kiểm soát khoảng cách tốt hơn ---
-          py: 2, // Giảm padding dọc
-          px: collapsed ? 2 : 3, // Giữ padding ngang
+          pt: collapsed ? 2.5 : 3, // 🔥 THÊM: Padding-top để đẩy xuống
+          pb: collapsed ? 1.5 : 2,
+          px: collapsed ? 1 : 3,
           backgroundColor: "#ffffff",
           textAlign: collapsed ? "center" : "left",
+          transition: "all 0.3s ease",
+          borderBottom: "1px solid #f0f0f0",
+          minHeight: collapsed ? 80 : 96, // 🔥 TĂNG: Tăng min height
+          mt: "64px", // 🔥 THÊM: Margin-top bằng với header height
         }}
       >
         {collapsed ? (
-          // Collapsed mode - Icon đơn giản
           <Avatar
             sx={{
-              bgcolor: "#ff9f1a", // Màu cam
-              color: "#ffffff", // Màu trắng cho icon
-              width: 48,
-              height: 48,
+              bgcolor: "#ff9f1a",
+              color: "#ffffff",
+              width: 36, // 🔥 GIẢM: Từ 40 xuống 36
+              height: 36,
+              margin: "0 auto",
             }}
           >
-            <StoreIcon />
+            <StoreIcon sx={{ fontSize: 20 }} /> {/* 🔥 GIẢM icon size */}
           </Avatar>
         ) : (
-          // Expanded mode - Clean layout
           <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
             <Avatar
               sx={{
-                bgcolor: "#ff9f1a", // ✅ Đổi thành màu cam giống collapsed
-                color: "#ffffff", // ✅ Màu trắng cho icon
-                width: 48,
-                height: 48,
+                bgcolor: "#ff9f1a",
+                color: "#ffffff",
+                width: 44, // 🔥 GIẢM: Từ 48 xuống 44
+                height: 44,
               }}
             >
-              <StoreIcon />
+              <StoreIcon sx={{ fontSize: 24 }} />
             </Avatar>
             <Box>
               <Typography
                 variant="h6"
                 fontWeight={600}
-                color="#333" // ✅ Sửa từ "##ff9f1a" thành "#333"
-                sx={{ lineHeight: 1.2 }}
+                color="#333"
+                sx={{ lineHeight: 1.2, fontSize: "1.1rem" }} // 🔥 GIẢM font size
               >
                 KhangAdmin
               </Typography>
-              <Typography variant="caption" color="#666">
-                {" "}
-                {/* ✅ Sửa từ "##ff9f1a" thành "#666" */}
+              <Typography
+                variant="caption"
+                color="#666"
+                sx={{ fontSize: "0.75rem" }}
+              >
                 ElectroShop Management
               </Typography>
             </Box>
           </Box>
         )}
       </Box>
-
-      {/* Navigation Menu - Clean styling */}
-      <List sx={{ pt: 2, backgroundColor: "#ffffff" }}>
-        {" "}
-        {/* ✅ Sửa từ "##ff9f1a" thành "#ffffff" */}
+      {/* Navigation Menu */}
+      <List sx={{ pt: 0.5, backgroundColor: "#ffffff" }}>
         {menuItems.map((item) => (
           <ListItem
             key={item.text}
             disablePadding
-            sx={{ px: collapsed ? 1 : 2, mb: 1 }}
+            sx={{
+              px: collapsed ? 0.5 : 2,
+              mb: collapsed ? 0.3 : 0.5, // 🔥 GIẢM margin bottom
+            }}
           >
             <ListItemButton
               selected={currentPage === item.text}
               onClick={() => handleNavigation(item.path)}
               sx={{
                 borderRadius: 2,
-                minHeight: 48,
+                minHeight: collapsed ? 36 : 44, // 🔥 GIẢM min height
                 justifyContent: collapsed ? "center" : "initial",
                 px: collapsed ? 1 : 2,
+                transition: "all 0.3s ease",
                 "&.Mui-selected": {
-                  backgroundColor: "#f0f0f0", // ✅ Sửa từ "##ff9f1a" thành "#f0f0f0"
+                  backgroundColor: "#f0f0f0",
                   color: "#333",
                   "& .MuiListItemIcon-root": {
                     color: "#333",
                   },
                 },
                 "&:hover": {
-                  backgroundColor: "#f8f8f8", // ✅ Sửa từ "##ff9f1a" thành "#f8f8f8"
+                  backgroundColor: "#f8f8f8",
                 },
               }}
             >
               <ListItemIcon
                 sx={{
-                  minWidth: collapsed ? 0 : 40,
+                  minWidth: collapsed ? 0 : 36, // 🔥 GIẢM min width
                   mr: collapsed ? 0 : 1,
                   justifyContent: "center",
-                  color: "#666", // Icon màu xám
+                  color: "#666",
+                  transition: "all 0.3s ease",
                 }}
               >
-                {item.icon}
+                {item.text === "Dashboard" && (
+                  <DashboardIcon sx={{ fontSize: collapsed ? 18 : 20 }} />
+                )}
+                {item.text === "Sản phẩm" && (
+                  <InventoryIcon sx={{ fontSize: collapsed ? 18 : 20 }} />
+                )}
+                {item.text === "Đơn hàng" && (
+                  <OrdersIcon sx={{ fontSize: collapsed ? 18 : 20 }} />
+                )}
+                {item.text === "Khách hàng" && (
+                  <PeopleIcon sx={{ fontSize: collapsed ? 18 : 20 }} />
+                )}
+                {item.text === "Thống kê" && (
+                  <AnalyticsIcon sx={{ fontSize: collapsed ? 18 : 20 }} />
+                )}
+                {item.text === "Cài đặt" && (
+                  <SettingsIcon sx={{ fontSize: collapsed ? 18 : 20 }} />
+                )}
               </ListItemIcon>
               {!collapsed && (
                 <ListItemText
@@ -137,6 +161,7 @@ const AdminSidebar = ({ currentPage, collapsed = false }) => {
                   primaryTypographyProps={{
                     fontWeight: currentPage === item.text ? 600 : 400,
                     color: "#333",
+                    fontSize: "0.9rem", // 🔥 GIẢM font size
                   }}
                 />
               )}
