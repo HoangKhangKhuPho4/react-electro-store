@@ -139,115 +139,125 @@ const DashboardPage = () => {
           height: "100%",
         }}
       >
-        <Grid container spacing={0}>
+        <Grid container spacing={3}>
           {" "}
-          {/* 🔥 LOẠI BỎ spacing để đồng bộ chiều ngang với hàng 2,3 */}
-          {/* HÀG 1: Customer và Order - mỗi cái chiếm 50% */}
-          <Grid item xs={12} md={6} sx={{ pr: { md: 0.5 } }}>
-            <Card
-              sx={{
-                borderRadius: 3,
-                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-                height: 300, // 🔥 STANDARDIZE: Tất cả cards đều 300px
-              }}
-            >
-              <CardContent sx={{ p: 3, height: "100%" }}>
-                {" "}
-                {/* 🔥 TĂNG: Từ p: 2 lên p: 3 */}
-                <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-                  <Box
-                    sx={{
-                      p: 2.5, // 🔥 TĂNG: Từ 1.5 lên 2.5
-                      borderRadius: 3,
-                      backgroundColor: "#e3f2fd",
-                      color: "#1976d2",
-                    }}
-                  >
-                    <People sx={{ fontSize: 42 }} />{" "}
-                    {/* 🔥 TĂNG: Từ 32 lên 42 */}
-                  </Box>
-                  <Box sx={{ flex: 1 }}>
-                    <Typography
-                      variant="h6" // 🔥 TĂNG: Từ body1 lên h6
-                      color="text.secondary"
-                      sx={{ mb: 1, fontWeight: 500 }} // 🔥 TĂNG margin bottom
-                    >
-                      Customers
-                    </Typography>
-                    <Typography
-                      variant="h2" // 🔥 TĂNG: Từ h3 lên h2
-                      fontWeight={700}
-                      sx={{ mb: 1, fontSize: "2.5rem" }} // 🔥 TĂNG: Từ 2rem lên 2.5rem
-                    >
-                      3,782
-                    </Typography>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <TrendingUp sx={{ color: "#22c55e", fontSize: 24 }} />{" "}
-                      {/* 🔥 TĂNG: Từ 18 lên 24 */}
-                      <Typography
-                        variant="h6" // 🔥 TĂNG: Từ body1 lên h6
-                        sx={{ color: "#22c55e", fontWeight: 600 }}
+          {/* 🔥 THÊM SPACING: Tạo khoảng cách giữa các hàng và cột */}
+          {/* HÀG 1: Customer và Order - ĐỒNG BỘ FULL WIDTH như hàng 2 */}
+          <Grid item xs={12}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={6}>
+                <Card
+                  sx={{
+                    borderRadius: 3,
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                    height: 300, // 🔥 STANDARDIZE: Tất cả cards đều 300px
+                  }}
+                >
+                  <CardContent sx={{ p: 3, height: "100%" }}>
+                    {" "}
+                    {/* 🔥 TĂNG: Từ p: 2 lên p: 3 */}
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+                      <Box
+                        sx={{
+                          p: 2.5, // 🔥 TĂNG: Từ 1.5 lên 2.5
+                          borderRadius: 3,
+                          backgroundColor: "#e3f2fd",
+                          color: "#1976d2",
+                        }}
                       >
-                        11.01%
-                      </Typography>
+                        <People sx={{ fontSize: 42 }} />{" "}
+                        {/* 🔥 TĂNG: Từ 32 lên 42 */}
+                      </Box>
+                      <Box sx={{ flex: 1 }}>
+                        <Typography
+                          variant="h6" // 🔥 TĂNG: Từ body1 lên h6
+                          color="text.secondary"
+                          sx={{ mb: 1, fontWeight: 500 }} // 🔥 TĂNG margin bottom
+                        >
+                          Customers
+                        </Typography>
+                        <Typography
+                          variant="h2" // 🔥 TĂNG: Từ h3 lên h2
+                          fontWeight={700}
+                          sx={{ mb: 1, fontSize: "2.5rem" }} // 🔥 TĂNG: Từ 2rem lên 2.5rem
+                        >
+                          3,782
+                        </Typography>
+                        <Box
+                          sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                        >
+                          <TrendingUp sx={{ color: "#22c55e", fontSize: 24 }} />{" "}
+                          {/* 🔥 TĂNG: Từ 18 lên 24 */}
+                          <Typography
+                            variant="h6" // 🔥 TĂNG: Từ body1 lên h6
+                            sx={{ color: "#22c55e", fontWeight: 600 }}
+                          >
+                            11.01%
+                          </Typography>
+                        </Box>
+                      </Box>
                     </Box>
-                  </Box>
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={6} sx={{ pl: { md: 0.5 } }}>
-            <Card
-              sx={{
-                borderRadius: 3,
-                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-                height: 300, // 🔥 STANDARDIZE: Tất cả cards đều 300px
-              }}
-            >
-              <CardContent sx={{ p: 3, height: "100%" }}>
-                {" "}
-                {/* 🔥 TĂNG: Từ p: 2 lên p: 3 */}
-                <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-                  <Box
-                    sx={{
-                      p: 2.5, // 🔥 TĂNG: Từ 1.5 lên 2.5
-                      borderRadius: 3,
-                      backgroundColor: "#fff3e0",
-                      color: "#f57c00",
-                    }}
-                  >
-                    <ShoppingCart sx={{ fontSize: 42 }} />{" "}
-                    {/* 🔥 TĂNG: Từ 32 lên 42 */}
-                  </Box>
-                  <Box sx={{ flex: 1 }}>
-                    <Typography
-                      variant="h6" // 🔥 TĂNG: Từ body1 lên h6
-                      color="text.secondary"
-                      sx={{ mb: 1, fontWeight: 500 }} // 🔥 TĂNG margin bottom
-                    >
-                      Orders
-                    </Typography>
-                    <Typography
-                      variant="h2" // 🔥 TĂNG: Từ h3 lên h2
-                      fontWeight={700}
-                      sx={{ mb: 1, fontSize: "2.5rem" }} // 🔥 TĂNG: Từ 2rem lên 2.5rem
-                    >
-                      5,359
-                    </Typography>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <TrendingDown sx={{ color: "#ef4444", fontSize: 24 }} />{" "}
-                      {/* 🔥 TĂNG: Từ 18 lên 24 */}
-                      <Typography
-                        variant="h6" // 🔥 TĂNG: Từ body1 lên h6
-                        sx={{ color: "#ef4444", fontWeight: 600 }}
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Card
+                  sx={{
+                    borderRadius: 3,
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                    height: 300, // 🔥 STANDARDIZE: Tất cả cards đều 300px
+                  }}
+                >
+                  <CardContent sx={{ p: 3, height: "100%" }}>
+                    {" "}
+                    {/* 🔥 TĂNG: Từ p: 2 lên p: 3 */}
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+                      <Box
+                        sx={{
+                          p: 2.5, // 🔥 TĂNG: Từ 1.5 lên 2.5
+                          borderRadius: 3,
+                          backgroundColor: "#fff3e0",
+                          color: "#f57c00",
+                        }}
                       >
-                        9.05%
-                      </Typography>
+                        <ShoppingCart sx={{ fontSize: 42 }} />{" "}
+                        {/* 🔥 TĂNG: Từ 32 lên 42 */}
+                      </Box>
+                      <Box sx={{ flex: 1 }}>
+                        <Typography
+                          variant="h6" // 🔥 TĂNG: Từ body1 lên h6
+                          color="text.secondary"
+                          sx={{ mb: 1, fontWeight: 500 }} // 🔥 TĂNG margin bottom
+                        >
+                          Orders
+                        </Typography>
+                        <Typography
+                          variant="h2" // 🔥 TĂNG: Từ h3 lên h2
+                          fontWeight={700}
+                          sx={{ mb: 1, fontSize: "2.5rem" }} // 🔥 TĂNG: Từ 2rem lên 2.5rem
+                        >
+                          5,359
+                        </Typography>
+                        <Box
+                          sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                        >
+                          <TrendingDown
+                            sx={{ color: "#ef4444", fontSize: 24 }}
+                          />{" "}
+                          {/* 🔥 TĂNG: Từ 18 lên 24 */}
+                          <Typography
+                            variant="h6" // 🔥 TĂNG: Từ body1 lên h6
+                            sx={{ color: "#ef4444", fontWeight: 600 }}
+                          >
+                            9.05%
+                          </Typography>
+                        </Box>
+                      </Box>
                     </Box>
-                  </Box>
-                </Box>
-              </CardContent>
-            </Card>
+                  </CardContent>
+                </Card>
+              </Grid>
+            </Grid>
           </Grid>
           {/* HÀG 2: Monthly Sales - COMPACT */}
           <Grid item xs={12}>
