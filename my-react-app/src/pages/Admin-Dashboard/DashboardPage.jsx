@@ -134,7 +134,7 @@ const DashboardPage = () => {
         sx={{
           width: "100%",
           maxWidth: "100%",
-          p: 0.5, // Padding nhỏ để tránh sát viền
+          p: 3, // 🔥 TĂNG: Tăng padding để có khoảng cách với sidebar
           m: 0,
           height: "100%",
         }}
@@ -142,10 +142,10 @@ const DashboardPage = () => {
         <Grid container spacing={3}>
           {" "}
           {/* 🔥 THÊM SPACING: Tạo khoảng cách giữa các hàng và cột */}
-          {/* HÀG 1: Customer và Order - ĐỒNG BỘ FULL WIDTH như hàng 2 */}
+          {/* HÀG 1: Customer và Order - ĐỒNG BỘ CHÍNH XÁC với hàng 2 */}
           <Grid item xs={12}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={6}>
+            <Grid container spacing={0} sx={{ mx: 0 }}>
+              <Grid item xs={12} md={6} sx={{ pr: { md: 1.5 } }}>
                 <Card
                   sx={{
                     borderRadius: 3,
@@ -200,7 +200,7 @@ const DashboardPage = () => {
                   </CardContent>
                 </Card>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={6} sx={{ pl: { md: 1.5 } }}>
                 <Card
                   sx={{
                     borderRadius: 3,
