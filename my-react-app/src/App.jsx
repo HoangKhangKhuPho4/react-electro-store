@@ -29,6 +29,8 @@ import Wishlist from "./pages/Wishlist/Wishlist";
 
 // Admin Pages
 import DashboardPage from "./pages/Admin-Dashboard/DashboardPage.jsx";
+import OrderManagementPage from "./pages/Admin-Orders/OrderManagementPage.jsx";
+import ProductManagementPage from "./pages/Admin-Products/ProductManagementPage.jsx";
 
 // Redux
 import { Provider } from "react-redux";
@@ -48,11 +50,8 @@ function App() {
               element={
                 <Routes>
                   <Route index element={<DashboardPage />} />
-                  <Route
-                    path="products"
-                    element={<div>Admin Products Page</div>}
-                  />
-                  <Route path="orders" element={<div>Admin Orders Page</div>} />
+                  <Route path="products" element={<ProductManagementPage />} />
+                  <Route path="orders" element={<OrderManagementPage />} />
                   <Route
                     path="customers"
                     element={<div>Admin Customers Page</div>}
