@@ -121,6 +121,14 @@ const OurProducts = () => {
               borderRadius: "8px",
               margin: "0 4px",
               transition: "all 0.2s ease-in-out",
+              outline: "none",
+              border: "none",
+
+              "&:focus": {
+                outline: "none",
+                border: "none",
+                boxShadow: "none",
+              },
 
               "&:hover": {
                 bgcolor: "#f5f5f5",

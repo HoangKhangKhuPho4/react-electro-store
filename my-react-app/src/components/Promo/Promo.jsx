@@ -80,8 +80,7 @@ const Promo = () => {
         sale: "TRẢ GÓP 0%",
         originalPrice: "52.990.000đ",
         salePrice: "48.990.000đ",
-        image:
-          "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/m/a/macbook-pro-14-inch-m3-2023.png",
+        image: "https://mac365.vn/wp-content/uploads/2024/03/3-12.png",
         badge: "TRẢNG GÓP",
         gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
         endDate: "15/11/2024",
