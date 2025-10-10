@@ -86,48 +86,70 @@ const OurProducts = () => {
           px: { xs: 1, md: 2 },
         }}
       >
-        <Typography variant="h5" sx={{ fontWeight: 800 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: 800,
+            color: "#333",
+          }}
+        >
           Our Products
         </Typography>
         <Tabs
           value={tab}
           onChange={(_, v) => setTab(v)}
+          variant="scrollable"
+          scrollButtons="auto"
           sx={{
-            "& .MuiTab-root": {
-              textTransform: "none",
-              borderRadius: 999,
-              minHeight: 36,
-              fontSize: "0.9rem",
-              px: 1.5,
-              color: "#666",
-              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-              position: "relative",
-              overflow: "hidden",
+            minHeight: 48,
+
+            "& .MuiTabScrollButton-root": {
+              color: "#f28900",
               "&:hover": {
                 bgcolor: "#fff3e0",
-                color: "#f28900",
-                transform: "translateY(-2px)",
-                boxShadow: "0 4px 12px rgba(242, 137, 0, 0.2)",
-              },
-              "&:active": {
-                transform: "translateY(0px)",
               },
             },
+
+            "& .MuiTab-root": {
+              textTransform: "none",
+              minHeight: 44,
+              fontSize: "0.9rem",
+              fontWeight: 500,
+              px: { xs: 2, md: 3 },
+              py: 1.5,
+              color: "#666",
+              borderRadius: "8px",
+              margin: "0 4px",
+              transition: "all 0.2s ease-in-out",
+
+              "&:hover": {
+                bgcolor: "#f5f5f5",
+                color: "#f28900",
+              },
+            },
+
             "& .Mui-selected": {
               bgcolor: "#f28900",
-              color: "#fff",
-              transform: "translateY(-1px)",
-              boxShadow: "0 2px 8px rgba(242, 137, 0, 0.3)",
+              color: "#fff !important",
+              fontWeight: 600,
+
               "&:hover": {
                 bgcolor: "#e67c00",
-                transform: "translateY(-3px)",
-                boxShadow: "0 6px 16px rgba(242, 137, 0, 0.4)",
               },
             },
+
             "& .MuiTabs-indicator": {
               display: "none",
             },
-            mr: { xs: 2, md: 5 },
+
+            // Responsive
+            "@media (max-width: 768px)": {
+              "& .MuiTab-root": {
+                minHeight: 40,
+                fontSize: "0.85rem",
+                px: 2,
+              },
+            },
           }}
         >
           <Tab label="All Products" />
@@ -135,8 +157,7 @@ const OurProducts = () => {
           <Tab label="Featured" />
           <Tab label="Top Selling" />
         </Tabs>
-      </Box>
-
+      </Box>{" "}
       <Grid
         container
         spacing={2}
